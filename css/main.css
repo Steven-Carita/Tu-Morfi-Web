@@ -623,3 +623,178 @@ footer i {
         grid-template-columns: 1fr;
     }
 }
+
+
+.qty-control{ display:inline-flex; align-items:center; gap:.5rem; }
+.qty-control input.qty-input{ width:3.5rem; text-align:center; padding:.35rem .4rem; border:1px solid var(--clr-gray); border-radius:.5rem; background:#fff; color:#222; }
+.qty-btn{ border:0; padding:.35rem .6rem; border-radius:.5rem; background: var(--clr-gray); cursor:pointer; font-weight:700; line-height:1; }
+.qty-btn:hover{ filter:brightness(0.95); }
+
+
+/* Controles de cantidad (carrito) */
+.carrito-producto-cantidad .qty{
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+}
+
+.carrito-producto-cantidad .qty-input{
+  width:3.25rem;
+  height:2rem;
+  text-align:center;
+  border:1px solid var(--clr-gray);
+  border-radius:.5rem;
+  background:#fff;
+  color:#222;
+  outline:none;
+}
+
+.carrito-producto-cantidad .qty-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:2rem;
+  height:2rem;
+  border:1px solid var(--clr-gray);
+  border-radius:.5rem;
+  background:#fff;
+  cursor:pointer;
+  font-weight:700;
+  line-height:1;
+}
+
+.carrito-producto-cantidad .qty-btn:active{
+  transform:scale(0.98);
+}
+
+/* Evitar inputs estirados por estilos globales */
+.carrito-producto-cantidad input[type="number"]{
+  max-width:3.25rem;
+}
+
+
+/* === Ajuste de diseño del bloque de cantidad === */
+.carrito-producto {
+  display: grid;
+  grid-template-columns: 120px 1fr 150px 150px 150px 50px;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Coloca "Cantidad" arriba y centrado */
+.carrito-producto-cantidad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+/* Texto "Cantidad" */
+.carrito-producto-cantidad small {
+  font-size: .75rem;     /* igual que los demás labels */
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+}
+
+/* Controles en línea: [-][input][+] */
+.carrito-producto-cantidad .qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+/* Input más compacto y centrado */
+.carrito-producto-cantidad .qty-input {
+  width: 3rem;
+  height: 1.8rem;
+  text-align: center;
+  border: 1px solid var(--clr-gray);
+  border-radius: .4rem;
+}
+
+/* Botones +/- */
+.carrito-producto-cantidad .qty-btn {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid var(--clr-gray);
+  border-radius: .4rem;
+  background: var(--clr-white);
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--clr-main);
+  transition: background 0.2s;
+}
+
+.carrito-producto-cantidad .qty-btn:hover {
+  background: var(--clr-gray);
+}
+
+/* Alineación horizontal consistente de columnas del carrito */
+.carrito-producto-precio, .carrito-producto-subtotal, .carrito-producto-cantidad{
+  justify-self:center;
+}
+
+/* Evitar desfases verticales del label respecto a otros */
+.carrito-producto-cantidad{
+  align-items:center;
+}
+
+/* Forzar que Cantidad, Precio y Subtotal comiencen desde ARRIBA y se alineen iguales */
+.carrito-producto-precio,
+.carrito-producto-subtotal,
+.carrito-producto-cantidad{
+  align-self: start;              /* arranca desde la parte superior de la fila */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .35rem;
+}
+
+/* Unificar separación del label respecto al valor/control */
+.carrito-producto-precio small,
+.carrito-producto-subtotal small,
+.carrito-producto-cantidad small{
+  margin-bottom: 0.2rem;
+  line-height: 1;
+}
+
+/* Alinear "Título" con las demás etiquetas del carrito */
+.carrito-producto-titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;     /* alinea el texto a la izquierda */
+  justify-content: flex-start; /* arranca desde arriba */
+  gap: .35rem;
+}
+
+.carrito-producto-titulo small {
+  font-size: .75rem;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+  line-height: 1;
+}
+
+/* === Alineación vertical de Cantidad, Precio y Subtotal === */
+.carrito-producto-cantidad,
+.carrito-producto-precio,
+.carrito-producto-subtotal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;   /* centra verticalmente con respecto al título */
+  margin-top: 0.6rem;        /* pequeño margen superior para compensar */
+}
+
+.carrito-producto-cantidad small,
+.carrito-producto-precio small,
+.carrito-producto-subtotal small {
+  font-size: .75rem;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+  line-height: 1;
+}
+

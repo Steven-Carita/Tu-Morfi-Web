@@ -1,32 +1,33 @@
-// se carga del localStorage el carrito guardado de la sesion anterior
-let productosEnCarrito = localStorage.getItem("productos-en-carrito");
-productosEnCarrito = JSON.parse(productosEnCarrito);
+// Cargar carrito desde localStorage
+let productosEnCarrito = JSON.parse(localStorage.getItem("productos-en-carrito")) || [];
 
-// referencias a los contenedores y botones que se usan en la pagina del carrito
+// Referencias del DOM
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
-
 const contenedorCarritoProductos = document.querySelector("#carrito-productos");
-
 const contenedorCarritoAcciones = document.querySelector("#carrito-acciones");
-
 const contenedorCarritoComprado = document.querySelector("#carrito-comprado");
 
-let botonesEliminar = document.querySelectorAll(".carrito-producto-eliminar");
-
 const botonVaciar = document.querySelector("#carrito-acciones-vaciar");
-
 const contenedorTotal = document.querySelector("#total");
-
 const botonComprar = document.querySelector("#carrito-acciones-comprar");
 
+// Formateador de moneda ARS (puntos para miles) 
+function formatARS(value) {
+  try {
+    return new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 }).format(Number(value) || 0);
+  } catch (e) {
+    // Fallback manual por si Intl no está disponible
+    const n = Math.round(Number(value) || 0).toString();
+    return n.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+}
 
-// esta funcion dibuja en pantalla los productos que estan en el carrito
-// si hay productos muestra la lista con cantidad precio subtotal y botones para eliminar
-// si no hay productos muestra el mensaje de carrito vacio
+// Render inicial
+cargarProductosCarrito();
 
+// Dibuja los productos del carrito con controles de cantidad (+/-) e input numErico
 function cargarProductosCarrito() {
     if (productosEnCarrito && productosEnCarrito.length > 0) {
-
         contenedorCarritoVacio.classList.add("disabled");
         contenedorCarritoProductos.classList.remove("disabled");
         contenedorCarritoAcciones.classList.remove("disabled");
@@ -34,10 +35,12 @@ function cargarProductosCarrito() {
 
         contenedorCarritoProductos.innerHTML = "";
 
-        productosEnCarrito.forEach(producto => {
+        productosEnCarrito.forEach((producto) => {
+            const subtotal = producto.precio * producto.cantidad;
 
             const div = document.createElement("div");
             div.classList.add("carrito-producto");
+            div.dataset.id = producto.id;
             div.innerHTML = `
                 <img class="carrito-producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
                 <div class="carrito-producto-titulo">
@@ -46,99 +49,117 @@ function cargarProductosCarrito() {
                 </div>
                 <div class="carrito-producto-cantidad">
                     <small>Cantidad</small>
-                    <p>${producto.cantidad}</p>
+                    <div class="qty">
+                        <button class="qty-btn" data-op="minus" aria-label="Restar cantidad">-</button>
+                        <input class="qty-input" type="number" min="1" value="${producto.cantidad}" aria-label="Cantidad" />
+                        <button class="qty-btn" data-op="plus" aria-label="Sumar cantidad">+</button>
+                    </div>
                 </div>
                 <div class="carrito-producto-precio">
                     <small>Precio</small>
-                    <p>$${producto.precio}</p>
+                    <p>$${formatARS(producto.precio)}</p>
                 </div>
                 <div class="carrito-producto-subtotal">
                     <small>Subtotal</small>
-                    <p>$${producto.precio * producto.cantidad}</p>
+                    <p class="subtotal">$${formatARS(subtotal)}</p>
                 </div>
-                <button class="carrito-producto-eliminar" id="${producto.id}"><i class="bi bi-trash-fill"></i></button>
+                <button class="carrito-producto-eliminar" title="Eliminar" aria-label="Eliminar"><i class="bi bi-trash-fill"></i></button>
             `;
 
-            // Nota: los botones + y - permiten cambiar cantidad, luego se recalcula total y se persiste
-
             contenedorCarritoProductos.append(div);
-        })
+        });
 
-        actualizarBotonesEliminar();
         actualizarTotal();
-
     } else {
         contenedorCarritoVacio.classList.remove("disabled");
         contenedorCarritoProductos.classList.add("disabled");
         contenedorCarritoAcciones.classList.add("disabled");
         contenedorCarritoComprado.classList.add("disabled");
     }
-
 }
 
-cargarProductosCarrito();
+// DelegaciOn de eventos para +/-, input y eliminar
+contenedorCarritoProductos.addEventListener("click", (e) => {
+    const row = e.target.closest(".carrito-producto");
+    if (!row) return;
+    const id = row.dataset.id;
 
-// esta funcion vuelve a tomar todos los botones eliminar y les asigna el evento de borrar producto
+    if (e.target.classList.contains("carrito-producto-eliminar") || e.target.closest(".carrito-producto-eliminar")) {
+        eliminarProducto(id);
+        return;
+    }
 
-function actualizarBotonesEliminar() {
+    if (e.target.classList.contains("qty-btn")) {
+        const op = e.target.dataset.op;
+        const input = row.querySelector(".qty-input");
+        let val = parseInt(input.value) || 1;
+        val = op === "plus" ? val + 1 : Math.max(1, val - 1);
+        input.value = val;
+        actualizarCantidad(id, val);
+    }
+});
 
+// Cambio manual en el input de cantidad
+contenedorCarritoProductos.addEventListener("change", (e) => {
+    if (e.target.classList.contains("qty-input")) {
+        const row = e.target.closest(".carrito-producto");
+        const id = row.dataset.id;
+        const nueva = Math.max(1, parseInt(e.target.value) || 1);
+        e.target.value = nueva;
+        actualizarCantidad(id, nueva);
+    }
+});
 
-    botonesEliminar = document.querySelectorAll(".carrito-producto-eliminar");
-
-    botonesEliminar.forEach(boton => {
-
-        boton.addEventListener("click", eliminarDelCarrito);
-    });
-}
-
-// esta funcion elimina un producto del carrito cuando se presiona el boton de la papelera
-// actualiza la interfaz y vuelve a guardar el estado en localStorage
-function eliminarDelCarrito(e) {
-    const idBoton = e.currentTarget.id;
-    const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
-
-    productosEnCarrito.splice(index, 1);
-    cargarProductosCarrito();
-
-   
-    // guarda el carrito actualizado para no perderlo al recargar
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-
-}
-
-// al hacer click en el boton Vaciar se borra todo el carrito y se actualiza la vista
-botonVaciar.addEventListener("click", vaciarCarrito);
-
-
-// elimina todos los productos borra storage y muestra estado vacio
-function vaciarCarrito() {
-    productosEnCarrito.length = 0;
-    // Almacenamiento local: uso de localStorage
-    // guarda el carrito actualizado para no perderlo al recargar
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+// Eliminar un producto
+function eliminarProducto(id) {
+    productosEnCarrito = productosEnCarrito.filter(p => String(p.id) !== String(id));
+    persistir();
     cargarProductosCarrito();
 }
 
+// Vaciar
+botonVaciar?.addEventListener("click", () => {
+    productosEnCarrito = [];
+    persistir();
+    cargarProductosCarrito();
+});
 
-// esta funcion calcula la suma total de todos los productos y la muestra en pantalla
-function actualizarTotal() {
-    const totalCalculado = productosEnCarrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
-    total.innerText = `$${totalCalculado}`;
-}
+// Comprar
+botonComprar?.addEventListener("click", comprarCarrito);
 
-// al hacer click en Comprar se simula la compra, se vacia el carrito y se muestra mensaje de confirmacion
-botonComprar.addEventListener("click", comprarCarrito);
-
-// simula compra exitosa vacia storage y muestra mensaje
 function comprarCarrito() {
-
-    productosEnCarrito.length = 0;
- 
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-
+    productosEnCarrito = [];
+    persistir();
     contenedorCarritoVacio.classList.add("disabled");
     contenedorCarritoProductos.classList.add("disabled");
     contenedorCarritoAcciones.classList.add("disabled");
     contenedorCarritoComprado.classList.remove("disabled");
+}
 
+// Actualiza cantidad, subtotales y total
+function actualizarCantidad(id, nuevaCantidad) {
+    const item = productosEnCarrito.find(p => String(p.id) === String(id));
+    if (!item) return;
+    item.cantidad = nuevaCantidad;
+
+    // Actualizar subtotal de la fila sin re-render completo
+    const row = contenedorCarritoProductos.querySelector(`.carrito-producto[data-id="${CSS.escape(String(id))}"]`);
+    if (row) {
+        const subtotalEl = row.querySelector(".subtotal");
+        if (subtotalEl) subtotalEl.textContent = `$${item.precio * item.cantidad}`;
+    }
+
+    persistir();
+    actualizarTotal();
+}
+
+// Total general
+function actualizarTotal() {
+    const totalCalculado = productosEnCarrito.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
+    if (contenedorTotal) contenedorTotal.innerText = `$${formatARS(totalCalculado)}`;
+}
+
+// Guardar en storage
+function persistir() {
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 }

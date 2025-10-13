@@ -6,14 +6,15 @@ const closeMenu = document.querySelector("#close-menu");
 
 // referencia al contenedor aside que funciona como menu lateral
 const aside = document.querySelector("aside");
+const botonesCategorias = document.querySelectorAll(".boton-categoria");
 
 // al hacer click en el boton de abrir se muestra el menu lateral
-openMenu.addEventListener("click", () => {
+openMenu?.addEventListener("click", () => {
     aside.classList.add("aside-visible");
 })
 
 // al hacer click en el boton de cerrar se oculta el menu lateral
-closeMenu.addEventListener("click", () => {
+closeMenu?.addEventListener("click", () => {
     aside.classList.remove("aside-visible");
 })
 
