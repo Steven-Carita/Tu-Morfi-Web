@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 export function validarCampo(regularExpresion, campo, mensaje) {
-  
+
   // Si está vacío, no se mostrara alerta (pero marcar como no válido)
   if (campo.value.trim() === "") {
     eliminarAlerta(campo.parentElement.parentElement);
@@ -55,7 +55,7 @@ export function validarCampo(regularExpresion, campo, mensaje) {
     campo.parentElement.classList.remove("error");
     return;
   }
-const ok = regularExpresion.test(campo.value.trim());
+  const ok = regularExpresion.test(campo.value.trim());
   if (ok) {
     eliminarAlerta(campo.parentElement.parentElement);
     estadoValidacionCampos[campo.name] = true;

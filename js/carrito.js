@@ -13,13 +13,13 @@ const botonComprar = document.querySelector("#carrito-acciones-comprar");
 
 // Formateador de moneda ARS (puntos para miles) 
 function formatARS(value) {
-  try {
-    return new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 }).format(Number(value) || 0);
-  } catch (e) {
-    // Fallback manual por si Intl no está disponible
-    const n = Math.round(Number(value) || 0).toString();
-    return n.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  }
+    try {
+        return new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 }).format(Number(value) || 0);
+    } catch (e) {
+        // Fallback manual por si Intl no está disponible
+        const n = Math.round(Number(value) || 0).toString();
+        return n.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
 }
 
 // Render inicial
@@ -112,6 +112,36 @@ contenedorCarritoProductos.addEventListener("change", (e) => {
 
 // Eliminar un producto
 function eliminarProducto(id) {
+
+
+
+    Toastify({
+        text: "Producto eliminado",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #dfb950ff, #c0ad57ff)",
+            borderRadius: "2rem",
+            textTransform: "uppercase",
+            fontZize: ".75rem"
+        },
+        offset: {
+            x: "3rem", // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: "1.5rem" // vertical axis - can be a number or a string indicating unity. eg: '2em'
+        },
+
+
+        onClick: function () { } // Callback after click
+    }).showToast();
+
+
+
+
+
+
     productosEnCarrito = productosEnCarrito.filter(p => String(p.id) !== String(id));
     persistir();
     cargarProductosCarrito();
@@ -119,9 +149,46 @@ function eliminarProducto(id) {
 
 // Vaciar
 botonVaciar?.addEventListener("click", () => {
-    productosEnCarrito = [];
-    persistir();
-    cargarProductosCarrito();
+
+    Swal.fire({
+        title: "¿Estás seguro?",
+        icon: "question",
+        html:
+            `Se van a eliminar <b>todos</b> los productos del carrito.`,
+
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonColor: "#43aa39ff",
+        confirmButtonText:
+            `Sí, vaciar`,
+        cancelButtonColor: "#d33",
+        cancelButtonText:
+            `No, cancelar`,
+
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Hecho",
+                html: "Se han eliminado <b>todos</b> los productos del carrito.",
+                showConfirmButton: false,
+                timer: 2500
+            });
+
+
+            productosEnCarrito = [];
+            persistir();
+            cargarProductosCarrito();
+        }
+    });
+
+
+
+
+
 });
 
 // Comprar

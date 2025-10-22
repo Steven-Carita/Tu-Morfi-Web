@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato&display=swap');
@@ -19,7 +18,17 @@
     font-family: 'Rubik', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, input, textarea, ul {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+input,
+textarea,
+ul {
     margin: 0;
     padding: 0;
 }
@@ -110,8 +119,8 @@ aside {
     box-shadow: 0 -1rem 0 var(--clr-white);
 }
 
-.boton-menu > i.bi-hand-index-thumb-fill,
-.boton-menu > i.bi-hand-index-thumb {
+.boton-menu>i.bi-hand-index-thumb-fill,
+.boton-menu>i.bi-hand-index-thumb {
     transform: rotateZ(90deg);
 }
 
@@ -156,8 +165,10 @@ main {
 
 .contenedor-productos {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    /* antes: grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: repeat(5, minmax(250px, 1fr));
+    gap: .75rem;
+    /* un poco menos de separación */
 }
 
 
@@ -170,18 +181,19 @@ main {
 .producto-detalles {
     background-color: var(--clr-main);
     color: var(--clr-white);
-    padding: .5rem;
+    padding: .4rem;
     border-radius: 1rem;
-    margin-top: -2rem;
+    margin-top: -1.5rem;
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: .25rem;
+    gap: .2rem;
+    
 }
 
 
 .producto-titulo {
-    font-size: 1rem;
+    font-size: .9rem;
 }
 
 
@@ -189,12 +201,13 @@ main {
     border: 0;
     background-color: var(--clr-white);
     color: var(--clr-main);
-    padding: .4rem;
+    padding: .30rem;
     text-transform: uppercase;
     border-radius: 2rem;
     cursor: pointer;
     border: 2px solid var(--clr-white);
     transition: background-color .2s, color .2s;
+    font-size: .8rem;
 }
 
 
@@ -347,7 +360,7 @@ footer i {
     padding-block: 3rem;
 }
 
-.footer__top > div {
+.footer__top>div {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -391,7 +404,7 @@ footer i {
     gap: .5rem;
 }
 
-.fantasticos-footer{
+.fantasticos-footer {
     color: whitesmoke;
     font-family: 'Bebas Neue', cursive;
 }
@@ -399,9 +412,9 @@ footer i {
 /* Modificamos el logo */
 
 .logo-img {
-  height: 150px;
-  margin-left: 50px;
-  vertical-align: middle;
+    height: 150px;
+    margin-left: 50px;
+    vertical-align: middle;
 }
 
 
@@ -504,7 +517,7 @@ footer i {
     .footer__bottom .icons {
         order: -1;
     }
-    
+
 }
 
 @media screen and (max-width: 480px) {
@@ -560,7 +573,7 @@ footer i {
         display: none;
     }
 
-/* Estilos para contenido principal */
+    /* Estilos para contenido principal */
     main {
         margin: 1rem;
         margin-top: 0;
@@ -582,7 +595,8 @@ footer i {
         color: var(--clr-main);
     }
 
-    .open-menu, .close-menu {
+    .open-menu,
+    .close-menu {
         background-color: transparent;
         color: var(--clr-main);
         border: 0;
@@ -612,7 +626,7 @@ footer i {
         flex-wrap: wrap;
         row-gap: 1rem;
     }
-    
+
 
 }
 
@@ -625,176 +639,208 @@ footer i {
 }
 
 
-.qty-control{ display:inline-flex; align-items:center; gap:.5rem; }
-.qty-control input.qty-input{ width:3.5rem; text-align:center; padding:.35rem .4rem; border:1px solid var(--clr-gray); border-radius:.5rem; background:#fff; color:#222; }
-.qty-btn{ border:0; padding:.35rem .6rem; border-radius:.5rem; background: var(--clr-gray); cursor:pointer; font-weight:700; line-height:1; }
-.qty-btn:hover{ filter:brightness(0.95); }
+.qty-control {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.qty-control input.qty-input {
+    width: 3.5rem;
+    text-align: center;
+    padding: .35rem .4rem;
+    border: 1px solid var(--clr-gray);
+    border-radius: .5rem;
+    background: #fff;
+    color: #222;
+}
+
+.qty-btn {
+    border: 0;
+    padding: .35rem .6rem;
+    border-radius: .5rem;
+    background: var(--clr-gray);
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.qty-btn:hover {
+    filter: brightness(0.95);
+}
 
 
 /* Controles de cantidad (carrito) */
-.carrito-producto-cantidad .qty{
-  display:inline-flex;
-  align-items:center;
-  gap:.4rem;
+.carrito-producto-cantidad .qty {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
 }
 
-.carrito-producto-cantidad .qty-input{
-  width:3.25rem;
-  height:2rem;
-  text-align:center;
-  border:1px solid var(--clr-gray);
-  border-radius:.5rem;
-  background:#fff;
-  color:#222;
-  outline:none;
+.carrito-producto-cantidad .qty-input {
+    width: 3.25rem;
+    height: 2rem;
+    text-align: center;
+    border: 1px solid var(--clr-gray);
+    border-radius: .5rem;
+    background: #fff;
+    color: #222;
+    outline: none;
 }
 
-.carrito-producto-cantidad .qty-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:2rem;
-  height:2rem;
-  border:1px solid var(--clr-gray);
-  border-radius:.5rem;
-  background:#fff;
-  cursor:pointer;
-  font-weight:700;
-  line-height:1;
+.carrito-producto-cantidad .qty-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--clr-gray);
+    border-radius: .5rem;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1;
 }
 
-.carrito-producto-cantidad .qty-btn:active{
-  transform:scale(0.98);
+.carrito-producto-cantidad .qty-btn:active {
+    transform: scale(0.98);
 }
 
 /* Evitar inputs estirados por estilos globales */
-.carrito-producto-cantidad input[type="number"]{
-  max-width:3.25rem;
+.carrito-producto-cantidad input[type="number"] {
+    max-width: 3.25rem;
 }
 
 
 /* === Ajuste de diseño del bloque de cantidad === */
 .carrito-producto {
-  display: grid;
-  grid-template-columns: 120px 1fr 150px 150px 150px 50px;
-  align-items: center;
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: 120px 1fr 150px 150px 150px 50px;
+    align-items: center;
+    gap: 1rem;
 }
 
 /* Coloca "Cantidad" arriba y centrado */
 .carrito-producto-cantidad {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
 }
 
 /* Texto "Cantidad" */
 .carrito-producto-cantidad small {
-  font-size: .75rem;     /* igual que los demás labels */
-  font-weight: 400;
-  margin-bottom: 0.2rem;
+    font-size: .75rem;
+    /* igual que los demás labels */
+    font-weight: 400;
+    margin-bottom: 0.2rem;
 }
 
 /* Controles en línea: [-][input][+] */
 .carrito-producto-cantidad .qty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
 }
 
 /* Input más compacto y centrado */
 .carrito-producto-cantidad .qty-input {
-  width: 3rem;
-  height: 1.8rem;
-  text-align: center;
-  border: 1px solid var(--clr-gray);
-  border-radius: .4rem;
+    width: 3rem;
+    height: 1.8rem;
+    text-align: center;
+    border: 1px solid var(--clr-gray);
+    border-radius: .4rem;
 }
 
 /* Botones +/- */
 .carrito-producto-cantidad .qty-btn {
-  width: 1.8rem;
-  height: 1.8rem;
-  border: 1px solid var(--clr-gray);
-  border-radius: .4rem;
-  background: var(--clr-white);
-  cursor: pointer;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--clr-main);
-  transition: background 0.2s;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 1px solid var(--clr-gray);
+    border-radius: .4rem;
+    background: var(--clr-white);
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--clr-main);
+    transition: background 0.2s;
 }
 
 .carrito-producto-cantidad .qty-btn:hover {
-  background: var(--clr-gray);
+    background: var(--clr-gray);
 }
 
 /* Alineación horizontal consistente de columnas del carrito */
-.carrito-producto-precio, .carrito-producto-subtotal, .carrito-producto-cantidad{
-  justify-self:center;
+.carrito-producto-precio,
+.carrito-producto-subtotal,
+.carrito-producto-cantidad {
+    justify-self: center;
 }
 
 /* Evitar desfases verticales del label respecto a otros */
-.carrito-producto-cantidad{
-  align-items:center;
+.carrito-producto-cantidad {
+    align-items: center;
 }
 
 /* Forzar que Cantidad, Precio y Subtotal comiencen desde ARRIBA y se alineen iguales */
 .carrito-producto-precio,
 .carrito-producto-subtotal,
-.carrito-producto-cantidad{
-  align-self: start;              /* arranca desde la parte superior de la fila */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: .35rem;
+.carrito-producto-cantidad {
+    align-self: start;
+    /* arranca desde la parte superior de la fila */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .35rem;
 }
 
 /* Unificar separación del label respecto al valor/control */
 .carrito-producto-precio small,
 .carrito-producto-subtotal small,
-.carrito-producto-cantidad small{
-  margin-bottom: 0.2rem;
-  line-height: 1;
+.carrito-producto-cantidad small {
+    margin-bottom: 0.2rem;
+    line-height: 1;
 }
 
 /* Alinear "Título" con las demás etiquetas del carrito */
 .carrito-producto-titulo {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;     /* alinea el texto a la izquierda */
-  justify-content: flex-start; /* arranca desde arriba */
-  gap: .35rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* alinea el texto a la izquierda */
+    justify-content: flex-start;
+    /* arranca desde arriba */
+    gap: .35rem;
 }
 
 .carrito-producto-titulo small {
-  font-size: .75rem;
-  font-weight: 400;
-  margin-bottom: 0.2rem;
-  line-height: 1;
+    font-size: .75rem;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+    line-height: 1;
 }
 
 /* === Alineación vertical de Cantidad, Precio y Subtotal === */
 .carrito-producto-cantidad,
 .carrito-producto-precio,
 .carrito-producto-subtotal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;   /* centra verticalmente con respecto al título */
-  margin-top: 0.6rem;        /* pequeño margen superior para compensar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* centra verticalmente con respecto al título */
+    margin-top: 0.6rem;
+    /* pequeño margen superior para compensar */
 }
 
 .carrito-producto-cantidad small,
 .carrito-producto-precio small,
 .carrito-producto-subtotal small {
-  font-size: .75rem;
-  font-weight: 400;
-  margin-bottom: 0.25rem;
-  line-height: 1;
+    font-size: .75rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+    line-height: 1;
 }
-
