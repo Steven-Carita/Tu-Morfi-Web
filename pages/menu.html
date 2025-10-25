@@ -70,7 +70,8 @@
                             Empanadas</button>
                     </li>
                     <li>
-                        <button id="acompañamientos" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i>
+                        <button id="acompañamientos" class="boton-menu boton-categoria"><i
+                                class="bi bi-hand-index-thumb"></i>
                             Acompañamientos</button>
                     </li>
                     <li>
@@ -84,7 +85,7 @@
                     </li>
                 </ul>
             </nav>
-           
+
 
             <footer>
 
@@ -93,7 +94,23 @@
         </aside>
         <!-- Seccion: contenido principal -->
         <main>
-            <h2 class="titulo-principal" id="titulo-principal">Todos los productos</h2>
+            <div class="header-lista">
+                <h2 class="titulo-principal" id="titulo-principal">Todos los productos</h2>
+                <div class="controles-lista">
+  <div class="busqueda-con-resultado">
+    <div id="resultado-busqueda" class="resultado-busqueda" hidden>Resultados para: <span class="q"></span></div>
+    <form id="form-busqueda" class="form-busqueda" onsubmit="return false;">
+      <input id="buscador" type="search" placeholder="Buscar producto..." aria-label="Buscar producto">
+      <button id="btn-buscar" type="submit" aria-label="Buscar"><i class="bi bi-search"></i></button>
+    </form>
+    <select id="ordenar" aria-label="Ordenar por precio">
+      <option value="">Ordenar por</option>
+      <option value="asc">Menor precio - Mayor precio</option>
+      <option value="desc">Mayor precio - Menor precio</option>
+    </select>
+  </div>
+</div>
+            </div>
             <!-- grid dinamico se llena con tarjetas segun la categoria seleccionada -->
             <div id="contenedor-productos" class="contenedor-productos">
                 <!-- Esto se va a rellenar con JS -->
@@ -135,4 +152,5 @@
     <script src="../js/main.js"></script>
     <script src="../js/mobile.js"></script>
 </body>
+
 </html>

@@ -299,7 +299,7 @@
 
     {
         "id": "beb-01",
-        "titulo": "Coca Cola 500ml",
+        "titulo": "Coca Cola 500ml - Gaseosa",
         "imagen": "../img/bebidas/b1.jpg",
         "categoria": {
             "nombre": "Bebidas",
@@ -310,7 +310,7 @@
 
     {
         "id": "beb-02",
-        "titulo": "Sprite Zero 500ml",
+        "titulo": "Sprite Zero 500ml - Gaseosa",
         "imagen": "../img/bebidas/b2.jpg",
         "categoria": {
             "nombre": "Bebidas",
@@ -321,7 +321,7 @@
 
     {
         "id": "beb-03",
-        "titulo": "Brahma 473ml",
+        "titulo": "Brahma 473ml - Cerveza",
         "imagen": "../img/bebidas/b3.jpg",
         "categoria": {
             "nombre": "Bebidas",
@@ -332,7 +332,7 @@
 
     {
         "id": "beb-04",
-        "titulo": "Stella 473ml",
+        "titulo": "Stella 473ml - Cerveza",
         "imagen": "../img/bebidas/b4.jpg",
         "categoria": {
             "nombre": "Bebidas",
@@ -343,7 +343,7 @@
 
     {
         "id": "beb-05",
-        "titulo": "Aquarius Naranja 500ml",
+        "titulo": "Aquarius Naranja 500ml - Jugo",
         "imagen": "../img/bebidas/b5.jpg",
         "categoria": {
             "nombre": "Bebidas",
@@ -354,7 +354,7 @@
 
     {
         "id": "beb-06",
-        "titulo": "Aquarius Pera 500ml",
+        "titulo": "Aquarius Pera 500ml - Jugo",
         "imagen": "../img/bebidas/b6.jpg",
         "categoria": {
             "nombre": "Bebidas",
@@ -365,7 +365,7 @@
 
     {
         "id": "beb-07",
-        "titulo": "Aquarius Manzana 500ml",
+        "titulo": "Aquarius Manzana 500ml - Jugo",
         "imagen": "../img/bebidas/b7.jpg",
         "categoria": {
             "nombre": "Bebidas",
@@ -376,7 +376,7 @@
 
     {
         "id": "beb-08",
-        "titulo": "Agua Villavicencio 500ml",
+        "titulo": "Agua Villavicencio 500ml - Agua",
         "imagen": "../img/bebidas/b8.jpg",
         "categoria": {
             "nombre": "Bebidas",

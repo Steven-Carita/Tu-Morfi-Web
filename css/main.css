@@ -165,10 +165,10 @@ main {
 
 .contenedor-productos {
     display: grid;
-    /* antes: grid-template-columns: repeat(4, 1fr); */
+   
     grid-template-columns: repeat(5, minmax(250px, 1fr));
     gap: .75rem;
-    /* un poco menos de separación */
+   
 }
 
 
@@ -712,7 +712,7 @@ footer i {
 }
 
 
-/* === Ajuste de diseño del bloque de cantidad === */
+/* Ajuste de diseño del bloque de cantidad  */
 .carrito-producto {
     display: grid;
     grid-template-columns: 120px 1fr 150px 150px 150px 50px;
@@ -729,10 +729,10 @@ footer i {
     gap: 0.3rem;
 }
 
-/* Texto "Cantidad" */
+/* Texto Cantidad */
 .carrito-producto-cantidad small {
     font-size: .75rem;
-    /* igual que los demás labels */
+
     font-weight: 400;
     margin-bottom: 0.2rem;
 }
@@ -745,7 +745,7 @@ footer i {
     gap: 0.4rem;
 }
 
-/* Input más compacto y centrado */
+/* Input  compacto y centrado */
 .carrito-producto-cantidad .qty-input {
     width: 3rem;
     height: 1.8rem;
@@ -772,14 +772,14 @@ footer i {
     background: var(--clr-gray);
 }
 
-/* Alineación horizontal consistente de columnas del carrito */
+/* AlineaciOn horizontal consistente de columnas del carrito */
 .carrito-producto-precio,
 .carrito-producto-subtotal,
 .carrito-producto-cantidad {
     justify-self: center;
 }
 
-/* Evitar desfases verticales del label respecto a otros */
+
 .carrito-producto-cantidad {
     align-items: center;
 }
@@ -797,7 +797,7 @@ footer i {
     gap: .35rem;
 }
 
-/* Unificar separación del label respecto al valor/control */
+/* Unificar separaciOn del label respecto al valor/control */
 .carrito-producto-precio small,
 .carrito-producto-subtotal small,
 .carrito-producto-cantidad small {
@@ -805,7 +805,7 @@ footer i {
     line-height: 1;
 }
 
-/* Alinear "Título" con las demás etiquetas del carrito */
+
 .carrito-producto-titulo {
     display: flex;
     flex-direction: column;
@@ -823,7 +823,6 @@ footer i {
     line-height: 1;
 }
 
-/* === Alineación vertical de Cantidad, Precio y Subtotal === */
 .carrito-producto-cantidad,
 .carrito-producto-precio,
 .carrito-producto-subtotal {
@@ -831,9 +830,9 @@ footer i {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* centra verticalmente con respecto al título */
+   
     margin-top: 0.6rem;
-    /* pequeño margen superior para compensar */
+   
 }
 
 .carrito-producto-cantidad small,
@@ -844,3 +843,53 @@ footer i {
     margin-bottom: 0.25rem;
     line-height: 1;
 }
+
+/* ---- Barra de búsqueda y orden ---- */
+.header-lista{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  margin-bottom:1rem;
+  flex-wrap:wrap;
+}
+.header-lista .controles-lista{
+  display:flex;
+  gap:.75rem;
+  align-items:center;
+  margin-right: 280PX;
+  margin-top: -20px;
+}
+#buscador{
+  padding:.6rem .9rem;
+  border-radius:.75rem;
+  border:1px solid var(--clr-gray);
+  background:#fff;
+  min-width:240px;
+  outline:none;
+}
+#buscador:focus{ box-shadow:0 0 0 3px rgba(192,173,87,.25); }
+#ordenar{
+  padding:.6rem .9rem;
+  border-radius:.75rem;
+  border:1px solid var(--clr-gray);
+  background:#fff;
+}
+@media (max-width: 768px){
+  .header-lista{ flex-direction:column; align-items:stretch; }
+  .header-lista .controles-lista{ width:100%; }
+  #buscador{ flex:1; width:100%; }
+  #ordenar{ width:100%; }
+}
+
+/* Buscador: lupa + submit-only + etiqueta de resultados */
+.busqueda-con-resultado{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+.form-busqueda{ display:flex; align-items:center; background:#fff; border-radius:.75rem; border:1px solid var(--clr-gray); overflow:hidden; }
+.form-busqueda input{ border:none; outline:none; flex:1; padding:.6rem .9rem; min-width:240px; }
+.form-busqueda button{ background:transparent; border:none; cursor:pointer; padding:.6rem .8rem; font-size:1.1rem; color:#333; display:flex; align-items:center; justify-content:center; }
+.form-busqueda button:hover{ color: var(--clr-main); }
+.resultado-busqueda{ font-size:.95rem; color:#555; white-space:nowrap; }
+.resultado-busqueda .q{ font-weight:600; color:#222; }
+
+/* Estado vacío de resultados */
+.empty-state{ grid-column: 1 / -1; margin-top: .5rem; width:100%; padding:2rem 1rem; text-align:left; padding-left:2rem; color:#666; background:#f7f7f7; border-radius:.75rem; font-size:1rem; }
