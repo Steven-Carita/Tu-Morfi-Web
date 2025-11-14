@@ -893,3 +893,55 @@ footer i {
 
 /* Estado vacío de resultados */
 .empty-state{ grid-column: 1 / -1; margin-top: .5rem; width:100%; padding:2rem 1rem; text-align:left; padding-left:2rem; color:#666; background:#f7f7f7; border-radius:.75rem; font-size:1rem; }
+
+
+/* ---- Favoritos: corazón en tarjetas ---- */
+.producto-header-line{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:.35rem;
+}
+
+.btn-favorito{
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    padding:0;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* ---- Favoritos: corazón en tarjetas (opción B) ---- */
+.producto-header-line{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .35rem;
+}
+
+.btn-favorito{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-favorito .bi-heart-fill{
+    font-size: 1.2rem;
+    color: #ffffff;              /* corazón BLANCO cuando está apagado */
+    transition: transform .2s ease, color .2s ease;
+}
+
+.btn-favorito:hover .bi-heart-fill{
+    transform: scale(1.15);
+}
+
+.btn-favorito.fav-active .bi-heart-fill{
+    color: #ff3b3b;              /* corazón completamente ROJO al activar */
+}
+

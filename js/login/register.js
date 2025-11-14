@@ -80,6 +80,7 @@ function eliminarAlerta(referencia) {
   if (alerta) alerta.remove();
 }
 
+
 export function enviarFormulario(form, alertaError, alertaExito) {
   // ¿Registro o Login?
   const isRegister = form.classList.contains("form-register");
@@ -97,6 +98,43 @@ export function enviarFormulario(form, alertaError, alertaExito) {
   }
 
   if (valido) {
+    // Construir payload de usuario / login
+    let email = "";
+    let password = "";
+    let nombre = "";
+    let apellido = "";
+
+    try{
+      const data = new FormData(form);
+      email = (data.get("userEmail") || "").toString().trim();
+      password = (data.get("userPassword") || "").toString();
+      nombre = (data.get("userName") || "").toString().trim();
+      apellido = (data.get("userLastName") || "").toString().trim();
+    }catch(e){}
+
+    // Integración con la "base de datos" de pago (pago-db.js)
+    if (window.AppDB) {
+      if (isRegister) {
+        window.AppDB.registerUser({
+          nombre,
+          apellido,
+          email,
+          password
+        });
+      } else {
+        const ok = window.AppDB.login(email, password);
+        if (!ok) {
+          // Login inválido: mostrar error y salir
+          alertaExito.classList.remove("alertaExito");
+          alertaError.classList.add("alertaError");
+          setTimeout(() => {
+            alertaError.classList.remove("alertaError");
+          }, 3000);
+          return;
+        }
+      }
+    }
+
     // Reset de estado y formulario
     estadoValidacionCampos.userName = false;
     estadoValidacionCampos.userLastName = false;
@@ -106,6 +144,16 @@ export function enviarFormulario(form, alertaError, alertaExito) {
     form.reset();
     alertaExito.classList.add("alertaExito");
     alertaError.classList.remove("alertaError");
+
+    // En caso de login exitoso, podemos redirigir al home o al perfil
+    if (!isRegister) {
+      setTimeout(() => {
+        try{
+          window.location.href = "../pages/home.html";
+        }catch(e){}
+      }, 800);
+    }
+
     setTimeout(() => {
       alertaExito.classList.remove("alertaExito");
     }, 3000);

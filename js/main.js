@@ -12,12 +12,134 @@ fetch("../js/productos.json")
 
 
 
+// ---- Favoritos por usuario (usa AppDB de pago-db.js) ----
+let favoritosActuales = [];
+
+function obtenerEmailUsuarioActual() {
+  if (window.AppDB && typeof window.AppDB.getCurrentUserEmail === "function") {
+    return window.AppDB.getCurrentUserEmail();
+  }
+  return null;
+}
+
+function cargarFavoritosUsuario() {
+  const email = obtenerEmailUsuarioActual();
+  if (!email || !window.AppDB || typeof window.AppDB.getFavorites !== "function") {
+    favoritosActuales = [];
+    return;
+  }
+  try {
+    const favs = window.AppDB.getFavorites(email) || [];
+    favoritosActuales = Array.isArray(favs) ? favs : [];
+  } catch (e) {
+    favoritosActuales = [];
+  }
+}
+
+function esFavorito(id) {
+  return favoritosActuales.some(f => f.id === id);
+}
+
+function mapProductoAFavorito(producto) {
+  if (!producto) return null;
+  return {
+    id: producto.id,
+    nombre: producto.titulo,
+    detalle: (producto.categoria && producto.categoria.nombre) || "",
+    tag: (producto.categoria && producto.categoria.nombre) || "Favorito",
+    precio: producto.precio,
+    imagen: producto.imagen
+  };
+}
+
+function toggleFavorito(productoId) {
+  const email = obtenerEmailUsuarioActual();
+  if (!email || !window.AppDB || typeof window.AppDB.updateFavorites !== "function") {
+    if (typeof Toastify !== "undefined") {
+      Toastify({
+        text: "Iniciá sesión para guardar tus favoritos",
+        duration: 3000,
+        gravity: "top",
+        position: "right"
+      }).showToast();
+    } else {
+      alert("Iniciá sesión para guardar tus favoritos.");
+    }
+    return;
+  }
+
+  const prod = productos.find(p => p.id === productoId);
+  if (!prod) return;
+
+  const estabaEnFav = esFavorito(productoId);
+
+  if (estabaEnFav) {
+    // Quitar de favoritos
+    favoritosActuales = favoritosActuales.filter(f => f.id !== productoId);
+  } else {
+    // Agregar a favoritos
+    const fav = mapProductoAFavorito(prod);
+    if (fav) favoritosActuales.push(fav);
+  }
+
+  window.AppDB.updateFavorites(email, favoritosActuales);
+  actualizarHeartsUI();
+
+  // Toastify según acción
+  if (typeof Toastify !== "undefined") {
+    Toastify({
+      text: estabaEnFav
+        ? "Quitado de tus favoritos"
+        : "Agregado a tus favoritos",
+      duration: 2500,
+      gravity: "top",
+      position: "right",
+      backgroundColor: estabaEnFav ? "#444" : "#b93d52ff",
+      style: {
+        marginTop: "25px",
+        marginRight: "50px",
+        borderRadius: "20px",
+        fontSize: "14px"
+      }
+    }).showToast();
+  }
+}
+
+
+function attachFavoritosListeners() {
+  if (!contenedorProductos) return;
+  const botonesFav = contenedorProductos.querySelectorAll(".btn-favorito");
+  botonesFav.forEach(btn => {
+    btn.addEventListener("click", function () {
+      const id = this.getAttribute("data-id");
+      if (id) toggleFavorito(id);
+    });
+  });
+}
+
+function actualizarHeartsUI() {
+  if (!contenedorProductos) return;
+  const botonesFav = contenedorProductos.querySelectorAll(".btn-favorito");
+  botonesFav.forEach(btn => {
+    const id = btn.getAttribute("data-id");
+    if (id && esFavorito(id)) {
+      btn.classList.add("fav-active");
+    } else {
+      btn.classList.remove("fav-active");
+    }
+  });
+}
+
+// cargar favoritos al inicio (si hay usuario logueado)
+cargarFavoritosUsuario();
+
+
 // SELECTORES CONSTANTES
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const tituloPrincipal = document.querySelector("#titulo-principal") || { textContent: "" };
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const numerito = document.querySelector("#numerito");
-function activarCategoriaTodos(){ try { botonesCategorias.forEach(b=>b.classList.remove("active")); const btnTodos=document.querySelector("#todos"); if(btnTodos) btnTodos.classList.add("active"); if(tituloPrincipal) tituloPrincipal.textContent="Todos los productos"; } catch(e){} }
+function activarCategoriaTodos() { try { botonesCategorias.forEach(b => b.classList.remove("active")); const btnTodos = document.querySelector("#todos"); if (btnTodos) btnTodos.classList.add("active"); if (tituloPrincipal) tituloPrincipal.textContent = "Todos los productos"; } catch (e) { } }
 
 const formBusqueda = document.querySelector("#form-busqueda");
 const btnBuscar = document.querySelector("#btn-buscar");
@@ -47,7 +169,7 @@ function aplicarFiltrosYOrden(term) {
       lista = [...productos];
     }
   }
-if (q) {
+  if (q) {
     lista = lista.filter(p => {
       const titulo = (p.titulo || "").toLowerCase();
       const cn = (p.categoria?.nombre || "").toLowerCase();
@@ -58,7 +180,7 @@ if (q) {
 
   const ord = (ordenarSelect?.value || "");
   if (ord === "asc" || ord === "desc") {
-    lista.sort((a,b) => ord === "desc" ? (b.precio - a.precio) : (a.precio - b.precio));
+    lista.sort((a, b) => ord === "desc" ? (b.precio - a.precio) : (a.precio - b.precio));
   }
 
   cargarProductos(lista);
@@ -91,17 +213,24 @@ try {
 
 //RENDER 
 function tarjetaProductoHTML(producto) {
+  const favClass = esFavorito(producto.id) ? " fav-active" : "";
   return `
     <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
     <div class="producto-detalles">
       <h3 class="producto-titulo">${producto.titulo}</h3>
+
       <p class="producto-precio">$${formatARS(producto.precio)}</p>
 
       <div class="qty-control" data-id="${producto.id}">
         <button class="qty-btn minus" data-id="${producto.id}">-</button>
         <input type="number" min="1" class="qty-input" data-id="${producto.id}" value="1">
         <button class="qty-btn plus" data-id="${producto.id}">+</button>
+
+        <button class="btn-favorito ${favClass}" data-id="${producto.id}">
+          <i class="bi bi-heart-fill"></i>
+        </button>
       </div>
+
 
       <button class="producto-agregar" id="${producto.id}" data-id="${producto.id}">Agregar</button>
     </div>`;
@@ -125,6 +254,8 @@ function cargarProductos(productosElegidos) {
   });
   actualizarBotonesAgregar();
   attachQtyListenersProducts();
+  attachFavoritosListeners();
+  actualizarHeartsUI();
 }
 
 // QTY CONTROLS 
@@ -149,28 +280,28 @@ function actualizarBotonesAgregar() {
 
 function agregarAlCarrito(e) {
 
-//Libreria
+  //Libreria
   Toastify({
-  text: "Producto agregado",
-  duration: 3000,
-  close: true,
-  gravity: "top", // `top` or `bottom`
-  position: "right", // `left`, `center` or `right`
-  stopOnFocus: true, // Prevents dismissing of toast on hover
-  style: {
-    background: "linear-gradient(to right, #dfb950ff, #c0ad57ff)",
-    borderRadius: "2rem",
-    textTransform: "uppercase",
-    fontZize: ".75rem"
-  },
-  offset: {
-    x: "3rem", // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-    y: "2rem" // vertical axis - can be a number or a string indicating unity. eg: '2em'
-  },
+    text: "Producto agregado",
+    duration: 3000,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #dfb950ff, #c0ad57ff)",
+      borderRadius: "2rem",
+      textTransform: "uppercase",
+      fontZize: ".75rem"
+    },
+    offset: {
+      x: "3rem", // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+      y: "2rem" // vertical axis - can be a number or a string indicating unity. eg: '2em'
+    },
 
 
-  onClick: function(){} // Callback after click
-}).showToast();
+    onClick: function () { } // Callback after click
+  }).showToast();
 
 
 

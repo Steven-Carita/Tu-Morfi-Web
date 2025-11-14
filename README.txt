@@ -67,3 +67,53 @@ Mantenimiento rapido
 - para agregar una categoria nueva crear boton en HTML y usar el mismo id de categoria en productos.
 
 ...
+
+==========================================
+JSON SERVER (db.json)
+==========================================
+
+Para simular una base de datos real se usa JSON Server leyendo y escribiendo sobre el archivo db.json.
+
+1) Instalar JSON Server (una sola vez)
+   npm install -g json-server
+
+2) Levantar el servidor en la carpeta TU_MORFI_WEB (donde está db.json)
+   json-server --watch db.json --port 3001
+
+3) Endpoints principales que usa el sitio:
+   - GET /users          -> sincroniza usuarios con AppDB (pago-db.js)
+   - POST /users         -> alta de usuarios cuando te registrás
+   - PATCH /users/:id    -> actualización de favoritos por usuario
+   - GET /compras?usuarioEmail=EMAIL  -> historial de compras por usuario
+   - POST /compras       -> guardar una nueva compra (retiro o pago online)
+
+Historial de compras
+--------------------
+- Cuando confirmás "Retiro en el local" en datos-compra.html
+  se crea un registro de compra con:
+    id, fecha, total, estado "Retiro en local",
+    datos de entrega, items del carrito y usuarioEmail.
+  Se guarda en:
+    - localStorage["historial-compras"]
+    - JSON Server (db.json -> arreglo "compras")
+
+- Cuando el pago con tarjeta en pago-end.html es exitoso,
+  pago.js llama a registrarCompraPago(currentTotal):
+    - genera id y fecha
+    - toma datos de envio desde localStorage["datos-compra"]
+    - lee items desde localStorage["productos-en-carrito"]
+    - marca estado "Pagado en línea"
+    - guarda en localStorage["historial-compras"]
+    - y hace POST /compras contra JSON Server
+
+Perfil de usuario
+-----------------
+- En pages/perfil.html el script js/perfil.js ahora:
+    - Obtiene el usuario actual desde AppDB (si existe)
+    - Intenta leer las compras desde JSON Server:
+          GET /compras?usuarioEmail=<email_del_usuario>
+    - Si el servidor no está levantado o falla,
+      cae en un fallback usando localStorage["historial-compras"]
+      o datos demo.
+
+

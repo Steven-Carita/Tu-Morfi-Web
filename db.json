@@ -1,0 +1,227 @@
+{
+  "users": [
+    {
+      "id": "f45b",
+      "nombre": "Alan",
+      "apellido": "Perez",
+      "email": "alanperez30@gmail.com",
+      "password": "87654321",
+      "telefono": "",
+      "direccion": "",
+      "favoritos": [
+        {
+          "id": "pizza-03",
+          "nombre": "Pizza Bosque Italiano",
+          "detalle": "Pizzas",
+          "tag": "Pizzas",
+          "precio": 18000,
+          "imagen": "../img/pizzas/p3.jpg"
+        },
+        {
+          "id": "pizza-05",
+          "nombre": "Pizza de Calabaza",
+          "detalle": "Pizzas",
+          "tag": "Pizzas",
+          "precio": 15000,
+          "imagen": "../img/pizzas/p5.jpg"
+        }
+      ],
+      "compras": []
+    },
+    {
+      "id": "c580",
+      "nombre": "Steven",
+      "apellido": "Carita",
+      "email": "stevencarita9818@gmail.com",
+      "password": "12345678",
+      "telefono": "",
+      "direccion": "",
+      "favoritos": [
+        {
+          "id": "pizza-01",
+          "nombre": "Pizza de Sardina",
+          "detalle": "Pizzas",
+          "tag": "Pizzas",
+          "precio": 15000,
+          "imagen": "../img/pizzas/p1.jpg"
+        },
+        {
+          "id": "pizza-04",
+          "nombre": "Pizza de Pepperoni",
+          "detalle": "Pizzas",
+          "tag": "Pizzas",
+          "precio": 18000,
+          "imagen": "../img/pizzas/p4.jpg"
+        },
+        {
+          "id": "pizza-05",
+          "nombre": "Pizza de Calabaza",
+          "detalle": "Pizzas",
+          "tag": "Pizzas",
+          "precio": 15000,
+          "imagen": "../img/pizzas/p5.jpg"
+        },
+        {
+          "id": "pizza-03",
+          "nombre": "Pizza Bosque Italiano",
+          "detalle": "Pizzas",
+          "tag": "Pizzas",
+          "precio": 18000,
+          "imagen": "../img/pizzas/p3.jpg"
+        },
+        {
+          "id": "burg-06",
+          "nombre": "Burger con champinones y cheddar",
+          "detalle": "Hamburguesas",
+          "tag": "Hamburguesas",
+          "precio": 14000,
+          "imagen": "../img/hamburguesas/h6.jpg"
+        },
+        {
+          "id": "pizza-02",
+          "nombre": "Pizza de Jamon y Champinones",
+          "detalle": "Pizzas",
+          "tag": "Pizzas",
+          "precio": 20000,
+          "imagen": "../img/pizzas/p2.jpg"
+        },
+        {
+          "id": "burg-02",
+          "nombre": "Triple burger con bacon y cheddar",
+          "detalle": "Hamburguesas",
+          "tag": "Hamburguesas",
+          "precio": 17000,
+          "imagen": "../img/hamburguesas/h2.jpg"
+        },
+        {
+          "id": "beb-08",
+          "nombre": "Agua Villavicencio 500ml - Agua",
+          "detalle": "Bebidas",
+          "tag": "Bebidas",
+          "precio": 2500,
+          "imagen": "../img/bebidas/b8.jpg"
+        }
+      ],
+      "compras": []
+    }
+  ],
+  "compras": [
+    {
+      "id": "#C-918334",
+      "fecha": "14/11/2025",
+      "total": 93000,
+      "estado": "Pagado en línea",
+      "entrega": "envio",
+      "direccion": "Homero 3090",
+      "localidad": "parque avellaneda",
+      "cp": "1439",
+      "envio_costo": 3000,
+      "usuarioEmail": "alanperez30@gmail.com",
+      "items": [
+        {
+          "id": "burg-07",
+          "nombre": "Burger con guacamole y cheddar",
+          "cantidad": 1,
+          "precio": 14000
+        },
+        {
+          "id": "pizza-02",
+          "nombre": "Pizza de Jamon y Champinones",
+          "cantidad": 2,
+          "precio": 20000
+        },
+        {
+          "id": "pizza-03",
+          "nombre": "Pizza Bosque Italiano",
+          "cantidad": 1,
+          "precio": 18000
+        },
+        {
+          "id": "pizza-04",
+          "nombre": "Pizza de Pepperoni",
+          "cantidad": 1,
+          "precio": 18000
+        }
+      ]
+    },
+    {
+      "id": "#C-187315",
+      "fecha": "14/11/2025",
+      "total": 38000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "pizza-04",
+          "nombre": "Pizza de Pepperoni",
+          "cantidad": 1,
+          "precio": 18000
+        },
+        {
+          "id": "pizza-02",
+          "nombre": "Pizza de Jamon y Champinones",
+          "cantidad": 1,
+          "precio": 20000
+        }
+      ]
+    },
+    {
+      "id": "#C-419311",
+      "fecha": "14/11/2025",
+      "total": 38000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "pizza-04",
+          "nombre": "Pizza de Pepperoni",
+          "cantidad": 1,
+          "precio": 18000
+        },
+        {
+          "id": "pizza-02",
+          "nombre": "Pizza de Jamon y Champinones",
+          "cantidad": 1,
+          "precio": 20000
+        }
+      ]
+    },
+    {
+      "id": "#C-957983",
+      "fecha": "14/11/2025",
+      "total": 38000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "pizza-04",
+          "nombre": "Pizza de Pepperoni",
+          "cantidad": 1,
+          "precio": 18000
+        },
+        {
+          "id": "pizza-02",
+          "nombre": "Pizza de Jamon y Champinones",
+          "cantidad": 1,
+          "precio": 20000
+        }
+      ]
+    }
+  ],
+  "otros": []
+}

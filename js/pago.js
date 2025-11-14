@@ -12,6 +12,94 @@
     el.innerHTML = money(val) + ' <span class="ars-badge">ARS</span>';
   }
 
+  const API_URL = "http://localhost:3001";
+
+  function generarIdCompra(){
+    try{
+      return "#C-" + Date.now().toString().slice(-6);
+    }catch(e){
+      return "#C-" + Math.floor(Math.random()*1000000);
+    }
+  }
+
+  function fechaHoyStr(){
+    const d = new Date();
+    const dd = String(d.getDate()).padStart(2,"0");
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const yy = d.getFullYear();
+    return dd + "/" + mm + "/" + yy;
+  }
+
+  function registrarCompraPago(montoTotal){
+    try{
+      const carrito = JSON.parse(localStorage.getItem("productos-en-carrito") || "[]");
+      const datos = JSON.parse(localStorage.getItem("datos-compra") || "{}");
+      const email = (window.AppDB && typeof window.AppDB.getCurrentUserEmail === "function")
+        ? window.AppDB.getCurrentUserEmail()
+        : (datos.email || "");
+
+      const sub = Array.isArray(carrito)
+        ? carrito.reduce(function(acc,p){
+            var unit = Number(p.precio) || 0;
+            var qty = Number(p.cantidad) || 1;
+            return acc + unit * qty;
+          },0)
+        : 0;
+
+      const compra = {
+        id: generarIdCompra(),
+        fecha: fechaHoyStr(),
+        total: Number(montoTotal || sub || 0),
+        estado: "Pagado en línea",
+        entrega: datos.entrega || "",
+        direccion: datos.direccion || "",
+        localidad: datos.localidad || "",
+        cp: datos.cp || "",
+        envio_costo: Number(datos.envio_costo || 0),
+        usuarioEmail: email,
+        items: Array.isArray(carrito) ? carrito.map(function(p){
+          return {
+            id: p.id,
+            nombre: p.titulo || p.nombre || "Producto",
+            cantidad: Number(p.cantidad || 1),
+            precio: Number(p.precio || 0)
+          };
+        }) : []
+      };
+
+      // Guardar en localStorage
+      try{
+        var raw = localStorage.getItem("historial-compras");
+        var lista = raw ? JSON.parse(raw) : [];
+        if (!Array.isArray(lista)) lista = [];
+        lista.push(compra);
+        localStorage.setItem("historial-compras", JSON.stringify(lista));
+      }catch(e){
+        console.warn("[Pago] No se pudo guardar historial en localStorage", e);
+      }
+
+      // Guardar en JSON Server
+      try{
+        fetch(API_URL + "/compras", {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(compra)
+        }).catch(function(err){
+          console.warn("[Pago] No se pudo enviar compra a JSON Server", err);
+        });
+      }catch(e){
+        console.warn("[Pago] Error general al enviar compra a JSON Server", e);
+      }
+
+      return compra;
+    }catch(e){
+      console.warn("[Pago] registrarCompraPago falló", e);
+      return null;
+    }
+  }
+
+
+
   document.addEventListener('DOMContentLoaded', function () {
     // --- Montos del resumen ---
     var total = localStorage.getItem('pago_total');
@@ -222,6 +310,10 @@
         });
 
         if (ok) {
+          // Registrar compra pagada
+          registrarCompraPago(currentTotal);
+          // Limpiar carrito al completar el pago
+          try{ localStorage.removeItem('productos-en-carrito'); }catch(e){}
           window.location.href = 'success.html';
         } else {
           Toastify({
