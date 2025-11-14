@@ -1,0 +1,444 @@
+
+/* Datos de compra — estilo moderno/minimal + 3 columnas */
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato&display=swap');
+
+:root{
+  --text:#44270f;
+  --bg:#faf7f3;
+  --card:#ffffff;
+  --muted:#8a6b49;
+  --primary:#dfc42b;
+  --primary-ink:#2a1a08;
+  --ring: rgba(223,196,43,.45);
+  --shadow: 0 8px 24px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.04);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --space: clamp(16px, 2vw, 24px);
+}
+
+
+
+.fondo{
+  max-width:min(2000px, 90%);
+  margin:auto;
+}
+
+*,
+*::before,
+*::after{ box-sizing:border-box; }
+
+
+
+body{
+  margin:0;
+  font-family:'Lato', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  
+  -webkit-font-smoothing:antialiased;
+  line-height:1.4;
+  
+}
+
+/* Wrapper más ancho para 3 columnas */
+.wrapper{
+  
+  margin-inline:auto;
+  padding: calc(var(--space) * 1.2);
+  display: flex;
+
+}
+
+/* Título */
+.titulo-principal{
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing:.5px;
+  font-size: clamp(20px, 3.2vw, 42px);
+  margin-top: 40px;
+  color: #44270f;
+}
+
+/* Form */
+#form-datos-compra{
+  display:flex;
+  flex-direction:column;
+  gap: calc(var(--space) * .9);
+}
+
+/* Grid 3 columnas */
+.compra-grid.tres-columnas{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr; /* forzado 3 col */
+  gap: var(--space);
+  align-items:start;
+}
+@media (max-width: 1100px){
+  .compra-grid.tres-columnas{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px){
+  .compra-grid.tres-columnas{ grid-template-columns: 1fr; }
+}
+
+/* Tarjetas */
+.datos, .resumen-compra{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: calc(var(--space) * .9);
+  border: 1px solid rgba(68,39,15,.06);
+}
+
+.datos h3, .resumen-compra h3{
+  font-family:'Bebas Neue', cursive;
+  font-weight:300;
+  font-size: clamp(20px, 2.2vw, 28px);
+  margin-bottom: 1rem;
+  color: var(--primary-ink);
+}
+
+/* Campos */
+#form-datos-compra label{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size: 14px;
+  margin: 8px 0;
+  color: var(--muted);
+}
+#form-datos-compra input,
+#form-datos-compra textarea,
+#form-datos-compra select{
+  appearance:none;
+  border: 1px solid rgba(68,39,15,.18);
+  background:#fff;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  outline:none;
+  font-size: 15px;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .02s ease;
+}
+#form-datos-compra input:focus,
+#form-datos-compra textarea:focus,
+#form-datos-compra select:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--ring);
+}
+#form-datos-compra select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2344270f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px 14px;
+  padding-right: 42px;
+}
+#form-datos-compra select::-ms-expand{ display:none; }
+
+/* Envío block hidden by default */
+#bloque-envio{ display:none; margin-top:.75rem; }
+
+/* Botones */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+  user-select:none;
+  border:1px solid transparent;
+  transition: transform .04s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.btn:active{ transform: translateY(1px); }
+.btn-primary{
+  background: var(--primary);
+  color: var(--primary-ink);
+  border-color: rgba(68,39,15,.15);
+  box-shadow: 0 8px 20px rgba(223,196,43,.35);
+}
+.btn-secondary{
+  background: #fff;
+  color: var(--text);
+  border:1px solid rgba(68,39,15,.16);
+}
+.acciones-form{ display:flex; justify-content:flex-end; gap:1rem; }
+
+/* Resumen: lista + totales + badge */
+.resumen-compra ul{ list-style:none; margin:0 0 .75rem 0; padding:0; }
+.resumen-compra ul li{ display:flex; justify-content:space-between; gap:10px; margin:.35rem 0; color:var(--muted); }
+
+.resumen-compra .resumen-totales .row{ display:flex; justify-content:space-between; align-items:center; margin:.35rem 0; }
+.resumen-compra .resumen-totales .total{ background: rgba(223,196,43,.12); border-radius: 10px; padding:.6rem .75rem; }
+.resumen-compra .resumen-totales .total.free{
+  background: rgba(64,160,67,.12);
+  border:1px solid rgba(64,160,67,.25);
+}
+.envio-msg{ margin-top:.5rem; font-size:13px; color:#2e5e30; }
+
+.badge-free{
+  display:inline-block;
+  font-size:12px;
+  font-weight:700;
+  padding:2px 8px;
+  margin-left:6px;
+  border-radius:999px;
+  color:#1f4d21;
+  background: rgba(64,160,67,.16);
+  border: 1px solid rgba(64,160,67,.25);
+  vertical-align:middle;
+}
+
+/* Fallback CSS con :has() para mostrar bloque envío si JS no corre */
+.datos.entrega:has(#tipo-entrega option:checked[value="envio"]) #bloque-envio{ display:block !important; }
+
+
+
+/**** FOOTER ****/
+
+footer {
+    padding-top: 0;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../../img/footer.jpg");
+    background-size: cover;
+    background-position: center center;
+    padding: 2rem;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.685);
+}
+
+footer h2,
+footer p,
+footer i {
+    color: white;
+}
+
+.footer__top,
+.footer__bottom {
+    z-index: 1;
+}
+
+.footer__top {
+    display: flex;
+    padding-block: 3rem;
+}
+
+.footer__top > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer__top h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 300;
+    font-size: 3rem;
+}
+
+.footer__top p {
+    font-family: 'Lato', sans-serif;
+}
+
+.address {
+    align-items: flex-end;
+}
+
+.address p {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3rem;
+}
+
+.footer__bottom p {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.footer__bottom .icons {
+    display: flex;
+    gap: .5rem;
+}
+
+.fantasticos-footer{
+    color: whitesmoke;
+    font-family: 'Bebas Neue', cursive;
+}
+
+@media screen and (max-width: 768px) {
+
+    .hero__header {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .header__right {
+        align-items: flex-start;
+    }
+
+    .hero__img {
+        padding-top: 0;
+    }
+
+    .hero__img img {
+        max-width: 100%;
+    }
+
+    .hero__main {
+        padding-inline: 2rem;
+        padding-top: 3rem;
+    }
+
+    .grid {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    .grid__item {
+        flex: 1;
+    }
+
+    .grid__item1 {
+        padding-bottom: 7rem;
+    }
+
+    .enjoy {
+        padding: 2rem;
+    }
+
+    .titles {
+        padding-inline: 0;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+
+    .events {
+        padding: 2rem;
+    }
+
+    .events .inner {
+        flex-direction: column;
+    }
+
+    .events .inner__right {
+        order: -1;
+    }
+
+    .dots {
+        bottom: 0;
+    }
+
+    .reservation {
+        padding: 2rem;
+        background-image: none;
+    }
+
+    .reservation__form {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer {
+        padding: 2rem;
+    }
+
+    .footer__top {
+        flex-direction: column;
+        padding: 0;
+        gap: 2rem;
+    }
+
+    .address {
+        align-items: flex-start;
+    }
+
+    .footer__bottom {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer__bottom .icons {
+        order: -1;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+
+    .hero__main {
+        flex-direction: column;
+    }
+}
+
+
+
+
+
+/* cambiamos el tamaño del logo o modificamos */
+
+.logo-img {
+  height: 150px;
+  margin-left: 50px;
+  vertical-align: middle;
+  
+}
+
+.logo{
+   
+  
+  color: #44270f;
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(24px, 3vw, 36px);
+  outline: none;
+}
+
+.logo-web{
+  margin-top: -12px;
+  margin-left: -30px;
+}
+
+
+
+/* ---- Validación de formulario en datos de compra ---- */
+.campo-error{
+  border-color:#dc3545 !important;
+  outline:none;
+  box-shadow:0 0 0 1px rgba(220,53,69,.25);
+}
+
+.mensaje-error{
+  margin-top:.75rem;
+  margin-bottom:.5rem;
+  font-size:.9rem;
+  color:#b91c1c;
+  background:#fee2e2;
+  border-radius:8px;
+  padding:.5rem .75rem;
+}

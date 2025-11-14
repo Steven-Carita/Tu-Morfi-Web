@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Pago - Checkout</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="../css/pago/pago-end.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <a class="logo-container" href="../index.html">
+            <img alt="Logo TU MORFI WEB" class="logo" src="../img/logo.png" />
+            <h1 class="brand-text">TU MORFI WEB</h1>
+        </a>
+    </header>
+    <main class="wrapper">
+        <!-- Columna izquierda: resumen + ilustración -->
+        <section class="panel left">
+            <div class="badge">
+                <span class="dot"></span> TU MORFI WEB
+                <small>ONLINE</small>
+            </div>
+            <p style="margin:10px 0 4px;color:#334155">Pagar a TU MORFI WEB</p>
+            <h1><span id="precioPrincipal"></span></h1>
+            <div class="row"><span>Envio</span><span><span id="precioEnvio"></span></span></div>
+            <div class="divider"></div>
+            <div class="row"><span>Subtotal</span><span><span id="precioSubtotal"></span></span></div>
+            <div class="promo" style="margin-top:8px">
+                <a href="#" id="promoLink">Añadir código de promoción</a>
+                <span id="promoAppliedTag" class="promo-applied-tag">5% OFF aplicado</span>
+            </div>
+            <div class="divider"></div>
+            <div class="row total"><span>Total a pagar</span><span><span id="precioTotal"></span></span></div>
+            <div class="cards">
+                <img alt="Tarjeta, cara (ilustración)" src="../assets/card-front.svg" />
+                <img alt="Tarjeta, dorso (ilustración)" src="../assets/card-back.svg" />
+            </div>
+            <div class="smallmeta">
+                <span style="opacity:.7">Powered by</span>
+                <strong>FANTASTICOS</strong>
+                <a href="#" onclick="return false;" style="color:#64748b">Condiciones</a>
+                <a href="#" onclick="return false;" style="color:#64748b">Privacidad</a>
+            </div>
+        </section>
+        <!-- Columna derecha: formulario de pago -->
+        <section class="panel right">
+            <h2>Pago con tarjeta</h2>
+            <label for="email">Correo electrónico</label>
+            <input id="email" placeholder="tucorreo@ejemplo.com" type="email" />
+            <label for="card">Información de la tarjeta</label>
+            <div class="badges" style="margin-bottom:6px">
+                <div class="card-logos">
+                    <img alt="Visa" class="card-logo" src="../img/pago/visa.jpg" />
+                    <img alt="Mastercard" class="card-logo" src="../img/pago/mastercard.jpg" />
+                </div>
+            </div>
+            <input id="card" placeholder="1234 1234 1234 1234" type="text" />
+            <div class="inline">
+                <input id="exp" placeholder="MM / AA" type="text" />
+                <input id="cvc" placeholder="CVC" type="text" />
+            </div>
+            <label for="name">Nombre en la tarjeta</label>
+            <input id="name" placeholder="Nombre y apellido" type="text" />
+            <label for="country">Dirección de facturación</label>
+            <select id="country" disabled>
+                <option selected="" value="AR">Argentina</option>
+                <option value="UY">Uruguay</option>
+                <option value="CL">Chile</option>
+                <option value="ES">España</option>
+            </select>
+            <input id="address" placeholder="Dirección" style="margin-top:8px" type="text" />
+            <div class="save">
+                <input id="save" type="checkbox" />
+                <label for="save" style="margin:0">Guardar la información para pagar más rápido la
+                    próxima vez</label>
+            </div>
+            <button id="payButton" class="paybtn">Pagar <span id="precioPagar"></span></button>
+        </section>
+    
+    <!-- Modal codigo de promocion -->
+    <div id="promoModal" class="promo-modal-backdrop">
+        <div class="promo-modal">
+            <h3>Código de promoción</h3>
+            <p>Ingresá tu cupón para obtener un <strong>5% de descuento</strong> sobre el total.</p>
+            <input id="promoCodeInput" type="text" placeholder="Codigo" autocomplete="off" />
+            <div class="promo-modal-actions">
+                <button type="button" id="promoCancelBtn" class="promo-btn promo-btn-secondary">Cancelar</button>
+                <button type="button" id="promoApplyBtn" class="promo-btn promo-btn-primary">Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+</main>
+    <script src="../js/pago-db.js"></script>
+    <script src="../js/pago.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+
+</html>

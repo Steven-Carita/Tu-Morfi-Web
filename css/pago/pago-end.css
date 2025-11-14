@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato&display=swap');
+
+
+/* pago-end.css - estilo minimalista inspirado en checkout */
+:root{
+  --bg:#f6f7fb;
+  --panel:#ffffff;
+  --text:#0f172a;
+  --muted:#6b7280;
+  --brand:#2563eb;
+  --stroke:#e5e7eb;
+  --success:#16a34a;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji';
+  color:var(--text);
+  background:var(--bg);
+}
+
+.wrapper{
+  max-width:1100px;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap:36px;
+  padding:0 16px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--stroke);
+  border-radius:18px;
+  padding:28px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.04);
+}
+
+.left h1{
+  font-size:40px;
+  margin:4px 0 8px;
+  letter-spacing:-0.5px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#334155;
+  font-weight:600;
+  font-size:14px;
+}
+
+.badge .dot{width:10px;height:10px;border-radius:999px;background:#10b981;display:inline-block}
+.badge small{background:#fde68a;color:#92400e;border-radius:999px;padding:2px 8px;margin-left:10px;font-weight:700}
+
+.divider{height:1px;background:var(--stroke);margin:16px 0}
+
+.row{display:flex;align-items:center;justify-content:space-between;margin:12px 0;color:#334155}
+.row.total{font-weight:800;font-size:18px;color:var(--text)}
+
+.promo a{color:var(--brand);text-decoration:none}
+.promo a:hover{text-decoration:underline}
+
+.promo-applied-tag{
+  margin-left:8px;
+  padding:3px 9px;
+  border-radius:999px;
+  border:1px solid rgba(22,163,74,.35);
+  background:rgba(22,163,74,.08);
+  font-size:11px;
+  font-weight:500;
+  color:var(--success);
+  display:none;
+}
+.promo-applied-tag.is-visible{
+  display:inline-flex;
+  align-items:center;
+}
+
+.cards{
+  display:grid;
+  gap:16px;
+  grid-template-columns: 1fr 1fr;
+  margin-top:16px;
+}
+.cards img{width:100%;border-radius:16px;border:1px solid var(--stroke)}
+
+.smallmeta{
+  margin-top:28px;
+  display:flex;
+  gap:16px;
+  align-items:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.right h2{font-size:22px;margin:0 0 14px}
+label{display:block;font-size:14px;color:#334155;margin:14px 0 6px}
+input,select{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--stroke);
+  outline:none;
+  background:#fff;
+  font-size:15px;
+}
+input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 4px rgba(37,99,235,.08)}
+
+.inline{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+}
+
+.paybtn{
+  width:100%;
+  padding:14px 18px;
+  border:none;
+  border-radius:12px;
+  background:var(--brand);
+  color:#fff;
+  font-weight:800;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:12px;
+}
+
+.save{
+  display:flex;align-items:center;gap:10px;margin-top:8px;color:#334155;font-size:14px
+}
+.save input[type="checkbox"]{width:auto}
+
+.badges{display:flex;gap:8px;align-items:center}
+.badge-card{font-size:10px;border:1px solid var(--stroke);padding:4px 6px;border-radius:6px;color:#334155;background:#fff}
+
+@media (max-width: 920px){
+  .wrapper{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+}
+
+
+/* === Estilos del logo central === */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: -50px;
+}
+
+.logo-container {
+  display: flex;
+  
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  width: 90px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.brand-text {
+  font-family: 'Bebas Neue', cursive;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #402319;
+
+}
+
+
+/* === Estilos para logos de tarjetas === */
+.card-logos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-logo {
+  width: 40px;
+  height: auto;
+}
+
+
+/* ARS badge consistent */
+.ars-badge{
+  font-size: 0.8em;
+  vertical-align: baseline;
+  color: #475569;
+  margin-left: 4px;
+  line-height: 1;
+}
+
+
+/* ARS badge blanca en botón azul */
+button .ars-badge {
+  color: #fff;
+}
+
+
+/* Spinner de procesamiento en el botón de pagar */
+.paybtn.loading{
+  position:relative;
+  opacity:.9;
+}
+
+.paybtn .spinner{
+  display:inline-block;
+  width:16px;
+  height:16px;
+  margin-right:8px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.5);
+  border-top-color:#ffffff;
+  animation:spin .8s linear infinite;
+  vertical-align:middle;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+
+
+/* --- Modal de código de promoción --- */
+.promo-modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease-out;
+}
+
+.promo-modal-backdrop.is-visible{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.promo-modal{
+  background:#ffffff;
+  border-radius:18px;
+  padding:22px 20px 18px;
+  width:100%;
+  max-width:340px;
+  box-shadow:0 18px 45px rgba(15,23,42,0.22);
+  font-family:'Rubik',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+
+.promo-modal h3{
+  margin:0 0 6px;
+  font-size:18px;
+  font-weight:600;
+  color:var(--text);
+}
+
+.promo-modal p{
+  margin:0 0 14px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.promo-modal input[type="text"]{
+  width:100%;
+  border-radius:999px;
+  border:1px solid var(--stroke);
+  padding:8px 14px;
+  font-size:14px;
+  outline:none;
+  margin-bottom:14px;
+}
+
+.promo-modal input[type="text"]:focus{
+  border-color:var(--brand);
+  box-shadow:0 0 0 1px rgba(37,99,235,0.12);
+}
+
+.promo-modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+}
+
+.promo-btn{
+  border-radius:999px;
+  border:none;
+  font-size:13px;
+  padding:7px 14px;
+  cursor:pointer;
+  font-weight:500;
+}
+
+.promo-btn-primary{
+  background:var(--brand);
+  color:#ffffff;
+}
+
+.promo-btn-secondary{
+  background:#e5e7eb;
+  color:#111827;
+}

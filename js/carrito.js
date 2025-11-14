@@ -194,13 +194,10 @@ botonVaciar?.addEventListener("click", () => {
 // Comprar
 botonComprar?.addEventListener("click", comprarCarrito);
 
-function comprarCarrito() {
-    productosEnCarrito = [];
-    persistir();
-    contenedorCarritoVacio.classList.add("disabled");
-    contenedorCarritoProductos.classList.add("disabled");
-    contenedorCarritoAcciones.classList.add("disabled");
-    contenedorCarritoComprado.classList.remove("disabled");
+function comprarCarrito(){
+    // No vaciamos el carrito: vamos a Datos de compra con los productos.
+    try { sessionStorage.setItem("checkout-origin","carrito"); } catch(e){}
+    location.href = "datos-compra.html";
 }
 
 // Actualiza cantidad, subtotales y total
@@ -230,3 +227,18 @@ function actualizarTotal() {
 function persistir() {
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 }
+
+// Forzar navegación al checkout aunque haya preventDefault en otro lado
+(function(){
+  const link = document.querySelector("#btn-continuar-compra")
+            || document.querySelector(".comprar-ahora")
+            || document.querySelector(".comprar");
+  if (!link) return;
+  link.onclick = null;
+  link.addEventListener("click", function(e){
+    const carrito = JSON.parse(localStorage.getItem("productos-en-carrito") || "[]");
+    if (!carrito.length) return;
+    
+    window.location.assign("datos-compra.html");
+  }, { capture: true });
+})();
