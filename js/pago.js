@@ -12,7 +12,7 @@
     el.innerHTML = money(val) + ' <span class="ars-badge">ARS</span>';
   }
 
-  const API_URL = "http://localhost:3001";
+  const API_URL = "http://localhost:3008";
 
   function generarIdCompra(){
     try{
@@ -29,6 +29,17 @@
     const yy = d.getFullYear();
     return dd + "/" + mm + "/" + yy;
   }
+
+  function fechaHoraStr(){
+    const d=new Date();
+    const dd=String(d.getDate()).padStart(2,"0");
+    const mm=String(d.getMonth()+1).padStart(2,"0");
+    const yy=d.getFullYear();
+    const hh=String(d.getHours()).padStart(2,"0");
+    const mi=String(d.getMinutes()).padStart(2,"0");
+    return dd+"/"+mm+"/"+yy+" "+hh+":"+mi;
+  }
+  
 
   function registrarCompraPago(montoTotal){
     try{
@@ -49,6 +60,7 @@
       const compra = {
         id: generarIdCompra(),
         fecha: fechaHoyStr(),
+        fechaHora: fechaHoraStr(),
         total: Number(montoTotal || sub || 0),
         estado: "Pagado en línea",
         entrega: datos.entrega || "",
@@ -101,12 +113,12 @@
 
 
   document.addEventListener('DOMContentLoaded', function () {
-    // --- Montos del resumen ---
+  
     var total = localStorage.getItem('pago_total');
     var envio = localStorage.getItem('pago_envio');
     var subtotal = localStorage.getItem('pago_subtotal');
 
-    // Fallback para que no se vea vacío si se entra directo
+    
     if (total == null || total === '') {
       total = 20000;
     }
@@ -117,7 +129,7 @@
       subtotal = total;
     }
 
-    // Normalizamos montos como números
+    
     total = parseFloat(total);
     envio = parseFloat(envio) || 0;
     subtotal = parseFloat(subtotal);
@@ -136,7 +148,7 @@
     setMoney('precioSubtotal', subtotal);
     actualizarTotalesConDescuento();
 
-    // --- Modal de código de promoción ---
+   
     var promoLink = document.getElementById('promoLink');
     var promoModal = document.getElementById('promoModal');
     var promoInput = document.getElementById('promoCodeInput');
@@ -225,11 +237,11 @@
           return;
         }
 
-        // Aplicamos 5% de descuento sobre el total original
+        
         currentTotal = Math.round(originalTotal * (1 - cupon.discount) * 100) / 100;
         couponApplied = cupon.code;
         actualizarTotalesConDescuento();
-        // Mostrar etiqueta de cupón aplicado junto al link
+       
         if (promoTag) {
           var porcentaje = Math.round((cupon.discount || 0) * 100);
           if (!porcentaje || isNaN(porcentaje)) {
@@ -252,7 +264,7 @@
       });
     }
 
-    // --- Formato automático MM/AA ---
+
     var expInput = document.getElementById('exp');
     if (expInput) {
       expInput.setAttribute('maxlength', '5');
@@ -266,19 +278,19 @@
       });
     }
 
-    // --- Formato automático del número de tarjeta ---
+    
     var cardInput = document.getElementById('card');
     if (cardInput) {
-      cardInput.setAttribute('maxlength', '19'); // 16 dígitos + 3 espacios
+      cardInput.setAttribute('maxlength', '19'); 
       cardInput.addEventListener('input', function () {
-        var val = cardInput.value.replace(/[^0-9]/g, ''); // solo números
+        var val = cardInput.value.replace(/[^0-9]/g, ''); 
         var grupos = val.match(/.{1,4}/g);
         var formatted = grupos ? grupos.join(' ') : '';
         cardInput.value = formatted;
       });
     }
 
-    // --- Lógica de pago y redirección a success ---
+    
     var payBtn = document.getElementById('payButton');
     if (!payBtn) return;
 
@@ -310,9 +322,9 @@
         });
 
         if (ok) {
-          // Registrar compra pagada
+      
           registrarCompraPago(currentTotal);
-          // Limpiar carrito al completar el pago
+     
           try{ localStorage.removeItem('productos-en-carrito'); }catch(e){}
           window.location.href = 'success.html';
         } else {
@@ -321,17 +333,17 @@
             duration: 5000,
             newWindow: true,
             close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
+            gravity: "top", 
+            position: "right", 
+            stopOnFocus: true, 
             style: {
               background: "linear-gradient(to right, #b12424ff, #cf3d3dff)",
             },
             offset: {
-              x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-              y: 20 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+              x: 50, 
+              y: 20 
             },
-            onClick: function () { } // Callback after click
+            onClick: function () { } 
           }).showToast();
 
 

@@ -1,4 +1,5 @@
 
+
 /**** estilos para el index ****/
 
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato&display=swap');
@@ -44,6 +45,7 @@
     font-weight: 300;
     list-style: none;
     display: flex;
+    align-items: center;
     font-size: 1.4rem;
     gap: 2rem;
     letter-spacing: 2px;
@@ -236,6 +238,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    margin-top: 30px;
 }
 
 .card img {
@@ -261,6 +264,7 @@
     padding: .75rem 1rem;
     color: white;
     text-decoration: none;
+    margin-bottom: 20px;
 }
 
 /**** EVENTS ****/
@@ -536,11 +540,308 @@ footer i {
 
 
 
-/* cambiamos el tamaño del logo o modificamos */
-
 .logo-img {
   height: 150px;
-  margin-left: 50px;
+  margin-left: -5px;
   vertical-align: middle;
 }
 
+.logo-img2{
+    height: 150px;
+    margin-left: 50px;
+    vertical-align: middle;
+}
+
+
+/* Saludo de usuario logueado */
+.user-greeting {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  margin-top: -55px;
+  padding: 0.3rem 0.4rem;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  width: fit-content;
+  backdrop-filter: blur(6px);
+  margin-left: 168px;
+}
+
+
+
+.tmw-login-popup {
+  border-radius: 18px !important;
+  padding: 1.8rem 1.6rem !important;
+}
+
+.tmw-btn-primary, .tmw-btn-secondary {
+  font-family: 'Lato', sans-serif !important;
+  font-size: 0.9rem !important;
+  border-radius: 999px !important;
+  padding: 0.45rem 1.4rem !important;
+}
+
+.tmw-btn-primary {
+  border: none !important;
+}
+
+.tmw-btn-secondary {
+  background-color: #ffffff !important;
+  color: #44270f !important;
+  border: 1px solid #44270f !important;
+}
+
+
+
+
+.cart-count {
+  display: inline-flex;
+  margin-left: 0.1rem;
+  min-width: 1.4rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background-color: #e53935; 
+  color: #ffffff;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.7;
+}
+
+.logout-item {
+  list-style: none;
+}
+
+.btn-logout {
+  border: 1px solid #e53935;
+  padding: 0.18rem 1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff5252, #e53935);
+  color: #ffffff;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  margin-top: -2.5px;
+  margin-left: -10px;
+}
+
+
+.btn-logout:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.25);
+  transform: translateY(-0.25px);
+}
+
+
+
+
+.header__right .menu li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+
+
+
+
+.swal2-icon.swal2-warning {
+  border-color: #e53935 !important;
+  color: #e53935 !important;
+}
+
+
+.swal2-confirm {
+  background-color: #e53935 !important;
+  border: none !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  padding: 0.6rem 1.4rem !important;
+  font-family: 'Bebas Neue', cursive !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 1px !important;
+}
+
+
+.swal2-cancel {
+  border: 1px solid #222222 !important;
+  background-color: #ffffff !important;
+  color: #222222 !important;
+  border-radius: 8px !important;
+  padding: 0.6rem 1.4rem !important;
+  font-family: 'Bebas Neue', cursive !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 1px !important;
+}
+
+
+
+
+.hero-title {
+  display: inline-flex;        
+  gap: 2px;                    
+}
+
+
+.hero-title span {
+  display: inline-block;
+  transform-origin: center;
+  animation: letraPulse 6s infinite; 
+}
+
+
+@keyframes letraPulse {
+  0%   { transform: scale(1); }
+  5%   { transform: scale(1.30); }
+  10%  { transform: scale(1); }
+  100% { transform: scale(1); }  
+}
+
+
+.hero-title span:nth-child(1)  { animation-delay: 0s; }
+.hero-title span:nth-child(2)  { animation-delay: 0.15s; }
+.hero-title span:nth-child(3)  { animation-delay: 0.30s; }
+.hero-title span:nth-child(4)  { animation-delay: 0.45s; }
+.hero-title span:nth-child(5)  { animation-delay: 0.60s; }
+.hero-title span:nth-child(6)  { animation-delay: 0.75s; }
+.hero-title span:nth-child(7)  { animation-delay: 0.90s; }
+.hero-title span:nth-child(8)  { animation-delay: 1.05s; }
+.hero-title span:nth-child(9)  { animation-delay: 1.20s; }
+.hero-title span:nth-child(10) { animation-delay: 1.35s; }
+
+
+
+
+
+
+
+
+
+
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin: 0;
+  animation: bodyFadeIn 0.6s ease-out;
+}
+
+@keyframes bodyFadeIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+
+
+
+[data-animate]{
+  opacity:0;
+  transform:translateY(20px);
+  transition:
+    opacity 1s ease-out,
+    transform 1s ease-out;
+}
+
+[data-animate].is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+[data-animate="fade-left"]{
+  transform:translateX(-24px);
+}
+[data-animate="fade-right"]{
+  transform:translateX(24px);
+}
+[data-animate="fade-left"].is-visible,
+[data-animate="fade-right"].is-visible{
+  transform:translateX(0);
+}
+
+
+.hero__header{
+  transition: box-shadow 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+
+
+
+.card{
+  transition: transform 0.7s ease-out, box-shadow 0.7s ease-out;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 26px rgba(0,0,0,0.18);
+}
+
+.enjoy .card a{
+  transition: background-color 0.7s ease-out, transform 0.7s ease-out, box-shadow 0.7s ease-out;
+}
+
+.enjoy .card a:hover{
+  background-color:#8f1111;
+  transform:translateY(-1px);
+  box-shadow:0 10px 20px rgba(0,0,0,0.25);
+}
+
+
+.hero__img img{
+  transition: transform 1s cubic-bezier(.22,1.28,.5,1);
+}
+
+.hero__img img:hover{
+  transform: translateY(-9px);
+}
+
+
+
+
+.menu a {
+  position: relative;
+  text-decoration: none;
+}
+
+.menu a .menu__item,
+.menu a li {
+  position: relative;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0%;
+  height: 2px;
+  background-color: #d35400; 
+  transition: width 0.3s ease-in-out;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+.menu__item--active::after {
+  width: 100% !important;
+}

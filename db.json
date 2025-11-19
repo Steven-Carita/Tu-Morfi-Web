@@ -6,26 +6,9 @@
       "apellido": "Perez",
       "email": "alanperez30@gmail.com",
       "password": "87654321",
-      "telefono": "",
+      "telefono": "1158769430",
       "direccion": "",
-      "favoritos": [
-        {
-          "id": "pizza-03",
-          "nombre": "Pizza Bosque Italiano",
-          "detalle": "Pizzas",
-          "tag": "Pizzas",
-          "precio": 18000,
-          "imagen": "../img/pizzas/p3.jpg"
-        },
-        {
-          "id": "pizza-05",
-          "nombre": "Pizza de Calabaza",
-          "detalle": "Pizzas",
-          "tag": "Pizzas",
-          "precio": 15000,
-          "imagen": "../img/pizzas/p5.jpg"
-        }
-      ],
+      "favoritos": [],
       "compras": []
     },
     {
@@ -34,8 +17,8 @@
       "apellido": "Carita",
       "email": "stevencarita9818@gmail.com",
       "password": "12345678",
-      "telefono": "",
-      "direccion": "",
+      "telefono": "11389845",
+      "direccion": "Calle falsa 123",
       "favoritos": [
         {
           "id": "pizza-01",
@@ -46,60 +29,64 @@
           "imagen": "../img/pizzas/p1.jpg"
         },
         {
-          "id": "pizza-04",
-          "nombre": "Pizza de Pepperoni",
-          "detalle": "Pizzas",
-          "tag": "Pizzas",
-          "precio": 18000,
-          "imagen": "../img/pizzas/p4.jpg"
-        },
-        {
-          "id": "pizza-05",
-          "nombre": "Pizza de Calabaza",
-          "detalle": "Pizzas",
-          "tag": "Pizzas",
-          "precio": 15000,
-          "imagen": "../img/pizzas/p5.jpg"
-        },
-        {
-          "id": "pizza-03",
-          "nombre": "Pizza Bosque Italiano",
-          "detalle": "Pizzas",
-          "tag": "Pizzas",
-          "precio": 18000,
-          "imagen": "../img/pizzas/p3.jpg"
-        },
-        {
-          "id": "burg-06",
-          "nombre": "Burger con champinones y cheddar",
+          "id": "burg-05",
+          "nombre": "Burger aros de cebolla y cheddar",
           "detalle": "Hamburguesas",
           "tag": "Hamburguesas",
           "precio": 14000,
-          "imagen": "../img/hamburguesas/h6.jpg"
+          "imagen": "../img/hamburguesas/h5.jpg"
         },
         {
-          "id": "pizza-02",
-          "nombre": "Pizza de Jamon y Champinones",
-          "detalle": "Pizzas",
-          "tag": "Pizzas",
-          "precio": 20000,
-          "imagen": "../img/pizzas/p2.jpg"
-        },
-        {
-          "id": "burg-02",
-          "nombre": "Triple burger con bacon y cheddar",
+          "id": "burg-07",
+          "nombre": "Burger con guacamole y cheddar",
           "detalle": "Hamburguesas",
           "tag": "Hamburguesas",
-          "precio": 17000,
-          "imagen": "../img/hamburguesas/h2.jpg"
+          "precio": 14000,
+          "imagen": "../img/hamburguesas/h7.jpeg"
         },
         {
-          "id": "beb-08",
-          "nombre": "Agua Villavicencio 500ml - Agua",
+          "id": "acom-04",
+          "nombre": "Bastones de Mozzarella",
+          "detalle": "Acompañamientos",
+          "tag": "Acompañamientos",
+          "precio": 8000,
+          "imagen": "../img/acompañamientos/a4.jpg"
+        },
+        {
+          "id": "beb-06",
+          "nombre": "Aquarius Pera 500ml - Jugo",
           "detalle": "Bebidas",
           "tag": "Bebidas",
-          "precio": 2500,
-          "imagen": "../img/bebidas/b8.jpg"
+          "precio": 3000,
+          "imagen": "../img/bebidas/b6.jpg"
+        },
+        {
+          "id": "burg-08",
+          "nombre": "Burger BBQ con cheddar",
+          "detalle": "Hamburguesas",
+          "tag": "Hamburguesas",
+          "precio": 14000,
+          "imagen": "../img/hamburguesas/h8.jpg"
+        }
+      ],
+      "compras": []
+    },
+    {
+      "id": "ad09",
+      "nombre": "Ana",
+      "apellido": "Castro",
+      "email": "anacastro@gmail.com",
+      "password": "12345678",
+      "telefono": "",
+      "direccion": "",
+      "favoritos": [
+        {
+          "id": "beb-04",
+          "nombre": "Stella 473ml - Cerveza",
+          "detalle": "Bebidas",
+          "tag": "Bebidas",
+          "precio": 3500,
+          "imagen": "../img/bebidas/b4.jpg"
         }
       ],
       "compras": []
@@ -109,6 +96,7 @@
     {
       "id": "#C-918334",
       "fecha": "14/11/2025",
+      "fechaHora": "14/11/2025 18:56",
       "total": 93000,
       "estado": "Pagado en línea",
       "entrega": "envio",
@@ -147,6 +135,7 @@
     {
       "id": "#C-187315",
       "fecha": "14/11/2025",
+      "fechaHora": "14/11/2025 19:06",
       "total": 38000,
       "estado": "Retiro en local",
       "entrega": "retiro",
@@ -173,6 +162,7 @@
     {
       "id": "#C-419311",
       "fecha": "14/11/2025",
+      "fechaHora": "14/11/2025 20:10",
       "total": 38000,
       "estado": "Retiro en local",
       "entrega": "retiro",
@@ -199,6 +189,7 @@
     {
       "id": "#C-957983",
       "fecha": "14/11/2025",
+      "fechaHora": "14/11/2025 20:26",
       "total": 38000,
       "estado": "Retiro en local",
       "entrega": "retiro",
@@ -221,7 +212,709 @@
           "precio": 20000
         }
       ]
+    },
+    {
+      "id": "#C-377026",
+      "fecha": "18/11/2025",
+      "fechaHora": "18/11/2025 20:26",
+      "total": 19950,
+      "estado": "Pagado en línea",
+      "entrega": "envio",
+      "direccion": "Calle 12356",
+      "localidad": "mataderos",
+      "cp": "1439",
+      "envio_costo": 0,
+      "usuarioEmail": "anacastro@gmail.com",
+      "items": [
+        {
+          "id": "pizza-04",
+          "nombre": "Pizza de Pepperoni",
+          "cantidad": 1,
+          "precio": 18000
+        },
+        {
+          "id": "emp-04",
+          "nombre": "Empanada de Humita",
+          "cantidad": 1,
+          "precio": 3000
+        }
+      ]
+    },
+    {
+      "id": "#C-120720",
+      "fecha": "18/11/2025",
+      "fechaHora": "18/11/2025 22:02",
+      "total": 38950,
+      "estado": "Pagado en línea",
+      "entrega": "envio",
+      "direccion": "Calle 123",
+      "localidad": "parque avellaneda",
+      "cp": "1438",
+      "envio_costo": 3000,
+      "usuarioEmail": "marianog@gmail.com",
+      "items": [
+        {
+          "id": "pizza-04",
+          "nombre": "Pizza de Pepperoni",
+          "cantidad": 1,
+          "precio": 18000
+        },
+        {
+          "id": "beb-08",
+          "nombre": "Agua Villavicencio 500ml - Agua",
+          "cantidad": 1,
+          "precio": 5000
+        },
+        {
+          "id": "pizza-05",
+          "nombre": "Pizza de Calabaza",
+          "cantidad": 1,
+          "precio": 15000
+        }
+      ]
+    },
+    {
+      "id": "#C-788440",
+      "fecha": "18/11/2025",
+      "fechaHora": "18/11/2025 22:46",
+      "total": 40850,
+      "estado": "Pagado en línea",
+      "entrega": "envio",
+      "direccion": "Calle falsa 123",
+      "localidad": "parque avellaneda",
+      "cp": "1437",
+      "envio_costo": 3000,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "pizza-02",
+          "nombre": "Pizza de Jamon y Champinones",
+          "cantidad": 2,
+          "precio": 20000
+        }
+      ]
+    },
+    {
+      "id": "#C-871290",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 04:37",
+      "total": 17100,
+      "estado": "Pagado en línea",
+      "entrega": "envio",
+      "direccion": "Calle falsa 123",
+      "localidad": "lugano",
+      "cp": "1487",
+      "envio_costo": 3000,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "mila-02",
+          "nombre": "Milanesa con Jamon y Queso",
+          "cantidad": 1,
+          "precio": 12000
+        },
+        {
+          "id": "emp-02",
+          "nombre": "Empanada de Pollo",
+          "cantidad": 1,
+          "precio": 3000
+        }
+      ]
+    },
+    {
+      "id": "#C-973506",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 05:29",
+      "total": 18000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "pizza-04",
+          "nombre": "Pizza de Pepperoni",
+          "cantidad": 1,
+          "precio": 18000
+        }
+      ]
+    },
+    {
+      "id": "#C-055975",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 05:30",
+      "total": 17000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "burg-04",
+          "nombre": "Burger con huevo frito y cheddar",
+          "cantidad": 1,
+          "precio": 12000
+        },
+        {
+          "id": "acom-01",
+          "nombre": "Papas Fritas",
+          "cantidad": 1,
+          "precio": 5000
+        }
+      ]
+    },
+    {
+      "id": "#C-110540",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 05:31",
+      "total": 3000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "emp-02",
+          "nombre": "Empanada de Pollo",
+          "cantidad": 1,
+          "precio": 3000
+        }
+      ]
+    },
+    {
+      "id": "#C-283249",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 05:34",
+      "total": 15000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "pizza-05",
+          "nombre": "Pizza de Calabaza",
+          "cantidad": 1,
+          "precio": 15000
+        }
+      ]
+    },
+    {
+      "id": "#C-310732",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 05:35",
+      "total": 15000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "pizza-05",
+          "nombre": "Pizza de Calabaza",
+          "cantidad": 1,
+          "precio": 15000
+        }
+      ]
+    },
+    {
+      "id": "#C-425126",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 05:37",
+      "total": 3000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "beb-01",
+          "nombre": "Coca Cola 500ml - Gaseosa",
+          "cantidad": 1,
+          "precio": 3000
+        }
+      ]
+    },
+    {
+      "id": "#C-555914",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 05:39",
+      "total": 8550,
+      "estado": "Pagado en línea",
+      "entrega": "envio",
+      "direccion": "Calle falsa 123",
+      "localidad": "mataderos",
+      "cp": "1487",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "beb-03",
+          "nombre": "Brahma 473ml - Cerveza",
+          "cantidad": 3,
+          "precio": 3000
+        }
+      ]
+    },
+    {
+      "id": "#C-522707",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 06:12",
+      "total": 11000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "perez@gmail.com",
+      "items": [
+        {
+          "id": "mila-05",
+          "nombre": "Milanesa con Guarnicion",
+          "cantidad": 1,
+          "precio": 11000
+        }
+      ]
+    },
+    {
+      "id": "#C-607482",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 06:13",
+      "total": 15000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "burg-03",
+          "nombre": "Burger con pulled pork y cheddar",
+          "cantidad": 1,
+          "precio": 15000
+        }
+      ]
+    },
+    {
+      "id": "#C-685797",
+      "fecha": "19/11/2025",
+      "fechaHora": "19/11/2025 06:14",
+      "total": 10000,
+      "estado": "Retiro en local",
+      "entrega": "retiro",
+      "direccion": "",
+      "localidad": "",
+      "cp": "",
+      "envio_costo": 0,
+      "usuarioEmail": "stevencarita9818@gmail.com",
+      "items": [
+        {
+          "id": "burg-01",
+          "nombre": "Cheeseburger doble con cheddar",
+          "cantidad": 1,
+          "precio": 10000
+        }
+      ]
     }
   ],
-  "otros": []
+  "otros": [],
+  "productos": [
+    {
+      "id": "pizza-01",
+      "titulo": "Pizza de Sardina",
+      "imagen": "../img/pizzas/p1.jpg",
+      "categoria": {
+        "nombre": "Pizzas",
+        "id": "pizzas"
+      },
+      "precio": 15000
+    },
+    {
+      "id": "pizza-02",
+      "titulo": "Pizza de Jamon y Champinones",
+      "imagen": "../img/pizzas/p2.jpg",
+      "categoria": {
+        "nombre": "Pizzas",
+        "id": "pizzas"
+      },
+      "precio": 20000
+    },
+    {
+      "id": "pizza-03",
+      "titulo": "Pizza Bosque Italiano",
+      "imagen": "../img/pizzas/p3.jpg",
+      "categoria": {
+        "nombre": "Pizzas",
+        "id": "pizzas"
+      },
+      "precio": 18000
+    },
+    {
+      "id": "pizza-04",
+      "titulo": "Pizza de Pepperoni",
+      "imagen": "../img/pizzas/p4.jpg",
+      "categoria": {
+        "nombre": "Pizzas",
+        "id": "pizzas"
+      },
+      "precio": 18000
+    },
+    {
+      "id": "pizza-05",
+      "titulo": "Pizza de Calabaza",
+      "imagen": "../img/pizzas/p5.jpg",
+      "categoria": {
+        "nombre": "Pizzas",
+        "id": "pizzas"
+      },
+      "precio": 15000
+    },
+    {
+      "id": "burg-01",
+      "titulo": "Cheeseburger doble con cheddar",
+      "imagen": "../img/hamburguesas/h1.jpg",
+      "categoria": {
+        "nombre": "Hamburguesas",
+        "id": "hamburguesas"
+      },
+      "precio": 10000
+    },
+    {
+      "id": "burg-02",
+      "titulo": "Triple burger con bacon y cheddar",
+      "imagen": "../img/hamburguesas/h2.jpg",
+      "categoria": {
+        "nombre": "Hamburguesas",
+        "id": "hamburguesas"
+      },
+      "precio": 17000
+    },
+    {
+      "id": "burg-03",
+      "titulo": "Burger con pulled pork y cheddar",
+      "imagen": "../img/hamburguesas/h3.jpg",
+      "categoria": {
+        "nombre": "Hamburguesas",
+        "id": "hamburguesas"
+      },
+      "precio": 15000
+    },
+    {
+      "id": "burg-04",
+      "titulo": "Burger con huevo frito y cheddar",
+      "imagen": "../img/hamburguesas/h4.jpg",
+      "categoria": {
+        "nombre": "Hamburguesas",
+        "id": "hamburguesas"
+      },
+      "precio": 12000
+    },
+    {
+      "id": "burg-05",
+      "titulo": "Burger aros de cebolla y cheddar",
+      "imagen": "../img/hamburguesas/h5.jpg",
+      "categoria": {
+        "nombre": "Hamburguesas",
+        "id": "hamburguesas"
+      },
+      "precio": 14000
+    },
+    {
+      "id": "burg-06",
+      "titulo": "Burger con champinones y cheddar",
+      "imagen": "../img/hamburguesas/h6.jpg",
+      "categoria": {
+        "nombre": "Hamburguesas",
+        "id": "hamburguesas"
+      },
+      "precio": 14000
+    },
+    {
+      "id": "burg-07",
+      "titulo": "Burger con guacamole y cheddar",
+      "imagen": "../img/hamburguesas/h7.jpeg",
+      "categoria": {
+        "nombre": "Hamburguesas",
+        "id": "hamburguesas"
+      },
+      "precio": 14000
+    },
+    {
+      "id": "burg-08",
+      "titulo": "Burger BBQ con cheddar",
+      "imagen": "../img/hamburguesas/h8.jpg",
+      "categoria": {
+        "nombre": "Hamburguesas",
+        "id": "hamburguesas"
+      },
+      "precio": 14000
+    },
+    {
+      "id": "mila-01",
+      "titulo": "Milanesa Napolitana",
+      "imagen": "../img/milanesas/m1.jpg",
+      "categoria": {
+        "nombre": "Milanesas",
+        "id": "milanesas"
+      },
+      "precio": 12000
+    },
+    {
+      "id": "mila-02",
+      "titulo": "Milanesa con Jamon y Queso",
+      "imagen": "../img/milanesas/m2.jpg",
+      "categoria": {
+        "nombre": "Milanesas",
+        "id": "milanesas"
+      },
+      "precio": 12000
+    },
+    {
+      "id": "mila-03",
+      "titulo": "Milanesa con Huevo Frito",
+      "imagen": "../img/milanesas/m3.jpg",
+      "categoria": {
+        "nombre": "Milanesas",
+        "id": "milanesas"
+      },
+      "precio": 12000
+    },
+    {
+      "id": "mila-04",
+      "titulo": "Milanesa con Cebolla Caramelizada",
+      "imagen": "../img/milanesas/m4.jpg",
+      "categoria": {
+        "nombre": "Milanesas",
+        "id": "milanesas"
+      },
+      "precio": 12000
+    },
+    {
+      "id": "mila-05",
+      "titulo": "Milanesa con Guarnicion",
+      "imagen": "../img/milanesas/m5.jpg",
+      "categoria": {
+        "nombre": "Milanesas",
+        "id": "milanesas"
+      },
+      "precio": 11000
+    },
+    {
+      "id": "emp-01",
+      "titulo": "Empanada de Carne",
+      "imagen": "../img/empanadas/e1.jpg",
+      "categoria": {
+        "nombre": "Empanadas",
+        "id": "empanadas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "emp-02",
+      "titulo": "Empanada de Pollo",
+      "imagen": "../img/empanadas/e2.jpg",
+      "categoria": {
+        "nombre": "Empanadas",
+        "id": "empanadas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "emp-03",
+      "titulo": "Empanada de Jamon y Queso",
+      "imagen": "../img/empanadas/e3.jpg",
+      "categoria": {
+        "nombre": "Empanadas",
+        "id": "empanadas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "emp-04",
+      "titulo": "Empanada de Humita",
+      "imagen": "../img/empanadas/e4.jpg",
+      "categoria": {
+        "nombre": "Empanadas",
+        "id": "empanadas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "emp-05",
+      "titulo": "Empanada Capresse",
+      "imagen": "../img/empanadas/e5.jpg",
+      "categoria": {
+        "nombre": "Empanadas",
+        "id": "empanadas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "acom-01",
+      "titulo": "Papas Fritas",
+      "imagen": "../img/acompañamientos/a1.jpg",
+      "categoria": {
+        "nombre": "Acompañamientos",
+        "id": "acompañamientos"
+      },
+      "precio": 5000
+    },
+    {
+      "id": "acom-02",
+      "titulo": "Papas con Cheddar y Bacon",
+      "imagen": "../img/acompañamientos/a2.jpg",
+      "categoria": {
+        "nombre": "Acompañamientos",
+        "id": "acompañamientos"
+      },
+      "precio": 6000
+    },
+    {
+      "id": "acom-03",
+      "titulo": "Aros de Cebolla",
+      "imagen": "../img/acompañamientos/a3.jpg",
+      "categoria": {
+        "nombre": "Acompañamientos",
+        "id": "acompañamientos"
+      },
+      "precio": 8000
+    },
+    {
+      "id": "acom-04",
+      "titulo": "Bastones de Mozzarella",
+      "imagen": "../img/acompañamientos/a4.jpg",
+      "categoria": {
+        "nombre": "Acompañamientos",
+        "id": "acompañamientos"
+      },
+      "precio": 8000
+    },
+    {
+      "id": "beb-01",
+      "titulo": "Coca Cola 500ml - Gaseosa",
+      "imagen": "../img/bebidas/b1.jpg",
+      "categoria": {
+        "nombre": "Bebidas",
+        "id": "bebidas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "beb-02",
+      "titulo": "Sprite Zero 500ml - Gaseosa",
+      "imagen": "../img/bebidas/b2.jpg",
+      "categoria": {
+        "nombre": "Bebidas",
+        "id": "bebidas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "beb-03",
+      "titulo": "Brahma 473ml - Cerveza",
+      "imagen": "../img/bebidas/b3.jpg",
+      "categoria": {
+        "nombre": "Bebidas",
+        "id": "bebidas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "beb-04",
+      "titulo": "Stella 473ml - Cerveza",
+      "imagen": "../img/bebidas/b4.jpg",
+      "categoria": {
+        "nombre": "Bebidas",
+        "id": "bebidas"
+      },
+      "precio": 3500
+    },
+    {
+      "id": "beb-05",
+      "titulo": "Aquarius Naranja 500ml - Jugo",
+      "imagen": "../img/bebidas/b5.jpg",
+      "categoria": {
+        "nombre": "Bebidas",
+        "id": "bebidas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "beb-06",
+      "titulo": "Aquarius Pera 500ml - Jugo",
+      "imagen": "../img/bebidas/b6.jpg",
+      "categoria": {
+        "nombre": "Bebidas",
+        "id": "bebidas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "beb-07",
+      "titulo": "Aquarius Manzana 500ml - Jugo",
+      "imagen": "../img/bebidas/b7.jpg",
+      "categoria": {
+        "nombre": "Bebidas",
+        "id": "bebidas"
+      },
+      "precio": 3000
+    },
+    {
+      "id": "beb-08",
+      "titulo": "Agua Villavicencio 500ml - Agua",
+      "precio": 2500,
+      "imagen": "../img/bebidas/b8.jpg",
+      "categoria": {
+        "id": "bebidas",
+        "nombre": "Bebidas"
+      }
+    }
+  ],
+  "categorias": [
+    {
+      "id": "pizzas",
+      "nombre": "Pizzas"
+    },
+    {
+      "id": "hamburguesas",
+      "nombre": "Hamburguesas"
+    },
+    {
+      "id": "milanesas",
+      "nombre": "Milanesas"
+    },
+    {
+      "id": "empanadas",
+      "nombre": "Empanadas"
+    },
+    {
+      "id": "acompañamientos",
+      "nombre": "Acompañamientos"
+    },
+    {
+      "id": "bebidas",
+      "nombre": "Bebidas"
+    }
+  ]
 }

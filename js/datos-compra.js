@@ -1,5 +1,5 @@
 (function () {
-  // ---------- Utils ----------
+  
   function formatARS(n) {
     const v = Number(n || 0);
     return v.toLocaleString("es-AR", { maximumFractionDigits: 0 });
@@ -54,8 +54,8 @@
     return [];
   }
 
-  // ---------- Helpers compra / historial ----------
-  const API_URL = "http://localhost:3001";
+  
+  const API_URL = "http://localhost:3008";
 
   function generarIdCompra() {
     try {
@@ -73,6 +73,17 @@
     return dd + "/" + mm + "/" + yy;
   }
 
+  function fechaHoraStr(){
+    const d=new Date();
+    const dd=String(d.getDate()).padStart(2,"0");
+    const mm=String(d.getMonth()+1).padStart(2,"0");
+    const yy=d.getFullYear();
+    const hh=String(d.getHours()).padStart(2,"0");
+    const mi=String(d.getMinutes()).padStart(2,"0");
+    return dd+"/"+mm+"/"+yy+" "+hh+":"+mi;
+  }
+  
+
   function registrarCompra(origen, datos, carrito, total) {
     try {
       carrito = Array.isArray(carrito) ? carrito : [];
@@ -86,6 +97,7 @@
       const compra = {
         id: generarIdCompra(),
         fecha: fechaHoyStr(),
+        fechaHora: fechaHoraStr(),
         total: Number(total || 0),
         estado: origen === "retiro" ? "Retiro en local" : "Pendiente de pago",
         entrega: datos.entrega || "",
@@ -142,7 +154,7 @@
     }
   }
 
-  // ---------- Ensure wrapper + list ----------
+  
   function ensureListaResumen() {
     const panel =
       document.querySelector(".resumen-compra") ||
@@ -168,7 +180,7 @@
     return lista;
   }
 
-  // ---------- Render ----------
+  
   function renderResumen() {
     const lista = ensureListaResumen();
     const subElem = document.querySelector("#subtotal-resumen");
@@ -240,7 +252,7 @@
     }
   }
 
-  // ---------- Events & init ----------
+ 
   (function wire() {
     const form = document.querySelector("#form-datos-compra");
     const selectEntrega = document.querySelector("#tipo-entrega");
@@ -270,7 +282,7 @@
       form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // limpiar estados de error previos
+     
         document
           .querySelectorAll(".campo-error")
           .forEach((el) => el.classList.remove("campo-error"));
@@ -316,7 +328,7 @@
           if (!datos.cp) marcarError("#cp", "Código Postal");
         }
 
-        // Podrías usar camposConError + erroresBox si querés mostrar un listado
+        
 
         const carrito = getCarrito();
         const sub = carrito.reduce(
@@ -336,7 +348,7 @@
 
         if (datos.entrega === "retiro") {
           Swal.fire({
-            title: "Desea retirar su pedido en el local?",
+            title: "¿Estas Seguro?",
             text: "Confirme que desea retirar su pedido en nuestro local sin costo de envío.",
             icon: "warning",
             showCancelButton: true,
@@ -362,7 +374,7 @@
                 JSON.stringify(datos)
               );
 
-              // Registrar compra de retiro en local
+             
               registrarCompra("retiro", datos, carrito, sub);
 
               Swal.fire({
@@ -372,7 +384,7 @@
                 confirmButtonColor: "#4cd630ff",
               }).then(() => {
                 localStorage.removeItem("productos-en-carrito");
-                location.href = "menu.html";
+                location.href = "../index.html";
               });
             }
           });
@@ -380,7 +392,7 @@
           return;
         }
 
-        // Envío a domicilio: continuar al checkout de pago
+    
         location.href = "pago-end.html";
       });
     }

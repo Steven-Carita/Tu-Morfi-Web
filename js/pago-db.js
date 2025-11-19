@@ -1,4 +1,4 @@
-// Base de datos de prueba de pago 
+
 window.PAYMENT_DB = [
   {
     email: 'stevencarita9818@gmail.com',
@@ -11,7 +11,7 @@ window.PAYMENT_DB = [
 ];
 
 
-// Cupones de prueba (5% de descuento)
+
 window.PAYMENT_COUPONS = [
   {
     code: 'MORFI5',
@@ -26,7 +26,7 @@ window.PAYMENT_COUPONS = [
 ];
 
 
-// Gestión simple de usuarios, favoritos y sesión (demo)
+
 window.AppDB = (function(){
   const USERS_KEY = "tmw-users";
   const SESSION_KEY = "tmw-current-user";
@@ -103,6 +103,37 @@ window.AppDB = (function(){
     saveUsers(users);
   }
 
+
+  function updateUser(email, data){
+    if (!email || !data) return null;
+    const users = loadUsers();
+    const idx = users.findIndex(u => u.email === email);
+    if (idx === -1) return null;
+
+    const updated = Object.assign({}, users[idx], {
+      nombre: data.nombre !== undefined ? data.nombre : users[idx].nombre,
+      apellido: data.apellido !== undefined ? data.apellido : users[idx].apellido,
+      telefono: data.telefono !== undefined ? data.telefono : users[idx].telefono,
+      direccion: data.direccion !== undefined ? data.direccion : users[idx].direccion
+    });
+
+    users[idx] = updated;
+    saveUsers(users);
+
+    
+    try{
+      const raw = localStorage.getItem(SESSION_KEY);
+      if (raw){
+        const current = JSON.parse(raw);
+        if (current && current.email === email){
+          localStorage.setItem(SESSION_KEY, JSON.stringify(updated));
+        }
+      }
+    }catch(e){}
+
+    return updated;
+  }
+
   function getFavorites(email){
     const u = findUser(email);
     if (!u || !Array.isArray(u.favoritos)) return [];
@@ -117,16 +148,14 @@ window.AppDB = (function(){
     getCurrentUserEmail,
     getCurrentUser,
     updateFavorites,
+    updateUser,
     getFavorites
   };
 })();
 
 
-// === Integración opcional con JSON Server (persistencia real con db.json) ===
-// Para usarlo, levantá JSON Server con:
-//   json-server --watch db.json --port 3001
-// y asegurate de que API_URL apunte a ese servidor.
-const API_URL = "http://localhost:3001";
+
+const API_URL = "http://localhost:3008"; 
 
 (function(){
   if (!window.AppDB) return;
@@ -134,6 +163,7 @@ const API_URL = "http://localhost:3001";
   const USERS_KEY = "tmw-users";
   const _origRegisterUser = window.AppDB.registerUser;
   const _origUpdateFavorites = window.AppDB.updateFavorites;
+  const _origUpdateUser = window.AppDB.updateUser;
 
   function loadUsersFromLocal(){
     try{
@@ -150,7 +180,7 @@ const API_URL = "http://localhost:3001";
     }catch(e){}
   }
 
-  // Sincronizar usuarios desde JSON Server hacia localStorage
+  
   function syncUsersFromServer(){
     try{
       fetch(API_URL + "/users")
@@ -168,7 +198,7 @@ const API_URL = "http://localhost:3001";
     }
   }
 
-  // Envolvemos el registerUser original para que también persista en JSON Server
+ 
   function registerUserWithApi(data){
     const usuario = _origRegisterUser ? _origRegisterUser(data) : data;
 
@@ -179,7 +209,7 @@ const API_URL = "http://localhost:3001";
         body: JSON.stringify(usuario)
       }).then(r => r.json())
         .then(nuevo => {
-          // Actualizamos localStorage con el user que tiene id del servidor
+         
           const lista = loadUsersFromLocal();
           const idx = lista.findIndex(u => u.email === nuevo.email);
           if (idx !== -1) {
@@ -199,7 +229,51 @@ const API_URL = "http://localhost:3001";
     return usuario;
   }
 
-  // Envolvemos updateFavorites para que también actualice en JSON Server
+
+ 
+  function updateUserWithApi(email, data){
+    const updated = _origUpdateUser ? _origUpdateUser(email, data) : null;
+    if (!updated) return null;
+
+    try{
+      const lista = loadUsersFromLocal();
+      const idx = lista.findIndex(u => u.email === email);
+      if (idx === -1) return updated;
+
+      const user = Object.assign({}, lista[idx], {
+        nombre: data.nombre !== undefined ? data.nombre : lista[idx].nombre,
+        apellido: data.apellido !== undefined ? data.apellido : lista[idx].apellido,
+        telefono: data.telefono !== undefined ? data.telefono : lista[idx].telefono,
+        direccion: data.direccion !== undefined ? data.direccion : lista[idx].direccion
+      });
+
+      lista[idx] = user;
+      saveUsersToLocal(lista);
+
+      if (!user.id) {
+        return updated;
+      }
+
+      fetch(API_URL + "/users/" + user.id, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          nombre: user.nombre,
+          apellido: user.apellido,
+          telefono: user.telefono,
+          direccion: user.direccion
+        })
+      }).catch(err => {
+        console.warn("No se pudieron actualizar los datos del usuario en JSON Server", err);
+      });
+    }catch(e){
+      console.warn("Error general al actualizar datos de usuario en JSON Server", e);
+    }
+
+    return updated;
+  }
+
+ 
   function updateFavoritesWithApi(email, favorites){
     if (_origUpdateFavorites){
       _origUpdateFavorites(email, favorites);
@@ -213,12 +287,12 @@ const API_URL = "http://localhost:3001";
       const user = lista[idx];
       user.favoritos = Array.isArray(favorites) ? favorites : [];
 
-      // guardamos en local
+    
       lista[idx] = user;
       saveUsersToLocal(lista);
 
       if (!user.id) {
-        // Si aún no tenemos id (primeras veces), no intentamos PATCH
+      
         return;
       }
 
@@ -234,10 +308,11 @@ const API_URL = "http://localhost:3001";
     }
   }
 
-  // Reemplazamos los métodos públicos por las versiones con API
+  
   window.AppDB.registerUser = registerUserWithApi;
   window.AppDB.updateFavorites = updateFavoritesWithApi;
+  window.AppDB.updateUser = updateUserWithApi;
 
-  // Sincronizamos usuarios apenas se cargue el archivo
+  
   syncUsersFromServer();
 })();

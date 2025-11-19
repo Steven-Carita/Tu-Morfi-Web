@@ -1,5 +1,5 @@
 
-/* Datos de compra — estilo moderno/minimal + 3 columnas */
+
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
@@ -21,11 +21,15 @@
 }
 
 
-
 .fondo{
-  max-width:min(2000px, 90%);
-  margin:auto;
+  width: 82%;
+  max-width: none;                
+  margin: 0 auto;
+  padding-inline: clamp(16px, 3vw, 40px); 
 }
+
+
+
 
 *,
 *::before,
@@ -43,7 +47,7 @@ body{
   
 }
 
-/* Wrapper más ancho para 3 columnas */
+
 .wrapper{
   
   margin-inline:auto;
@@ -52,7 +56,7 @@ body{
 
 }
 
-/* Título */
+
 .titulo-principal{
   font-family: 'Bebas Neue', cursive;
   letter-spacing:.5px;
@@ -61,17 +65,17 @@ body{
   color: #44270f;
 }
 
-/* Form */
+
 #form-datos-compra{
   display:flex;
   flex-direction:column;
   gap: calc(var(--space) * .9);
 }
 
-/* Grid 3 columnas */
+
 .compra-grid.tres-columnas{
   display:grid;
-  grid-template-columns: 1fr 1fr 1fr; /* forzado 3 col */
+  grid-template-columns: 1fr 1fr 1fr; 
   gap: var(--space);
   align-items:start;
 }
@@ -82,7 +86,7 @@ body{
   .compra-grid.tres-columnas{ grid-template-columns: 1fr; }
 }
 
-/* Tarjetas */
+
 .datos, .resumen-compra{
   background: var(--card);
   border-radius: var(--radius);
@@ -99,7 +103,7 @@ body{
   color: var(--primary-ink);
 }
 
-/* Campos */
+
 #form-datos-compra label{
   display:flex;
   flex-direction:column;
@@ -138,10 +142,10 @@ body{
 }
 #form-datos-compra select::-ms-expand{ display:none; }
 
-/* Envío block hidden by default */
+
 #bloque-envio{ display:none; margin-top:.75rem; }
 
-/* Botones */
+
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
   padding: 12px 18px;
@@ -167,7 +171,7 @@ body{
 }
 .acciones-form{ display:flex; justify-content:flex-end; gap:1rem; }
 
-/* Resumen: lista + totales + badge */
+
 .resumen-compra ul{ list-style:none; margin:0 0 .75rem 0; padding:0; }
 .resumen-compra ul li{ display:flex; justify-content:space-between; gap:10px; margin:.35rem 0; color:var(--muted); }
 
@@ -192,7 +196,7 @@ body{
   vertical-align:middle;
 }
 
-/* Fallback CSS con :has() para mostrar bloque envío si JS no corre */
+
 .datos.entrega:has(#tipo-entrega option:checked[value="envio"]) #bloque-envio{ display:block !important; }
 
 
@@ -401,13 +405,21 @@ footer i {
 
 
 
-/* cambiamos el tamaño del logo o modificamos */
+
 
 .logo-img {
   height: 150px;
-  margin-left: 50px;
+  margin-left: -5px;
   vertical-align: middle;
   
+}
+
+
+.logo-img1{
+
+  height: 150px;
+  margin-left: 50px;
+  vertical-align: middle;
 }
 
 .logo{
@@ -426,7 +438,7 @@ footer i {
 
 
 
-/* ---- Validación de formulario en datos de compra ---- */
+
 .campo-error{
   border-color:#dc3545 !important;
   outline:none;

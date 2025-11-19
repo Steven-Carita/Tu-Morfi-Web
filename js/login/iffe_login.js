@@ -57,7 +57,7 @@
   }
 
   function enviarFormulario() {
-    //VALIDAMOS EL ENVIO DE NUESTRO FORMULARIO
+
 
     if (estadoValidacionCampos.userEmail && estadoValidacionCampos.userPassword) {
 

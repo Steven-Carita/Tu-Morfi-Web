@@ -161,7 +161,7 @@ main {
     font-size: 2rem;
 }
 
-/* Estilos para tarjetas/listado de productos */
+
 
 .contenedor-productos {
     display: grid;
@@ -412,9 +412,9 @@ footer i {
 /* Modificamos el logo */
 
 .logo-img {
-    height: 150px;
-    margin-left: 50px;
-    vertical-align: middle;
+  height: 150px;
+  margin-left: -5px;
+  vertical-align: middle;
 }
 
 
@@ -573,7 +573,7 @@ footer i {
         display: none;
     }
 
-    /* Estilos para contenido principal */
+    
     main {
         margin: 1rem;
         margin-top: 0;
@@ -670,7 +670,7 @@ footer i {
 }
 
 
-/* Controles de cantidad (carrito) */
+
 .carrito-producto-cantidad .qty {
     display: inline-flex;
     align-items: center;
@@ -706,13 +706,13 @@ footer i {
     transform: scale(0.98);
 }
 
-/* Evitar inputs estirados por estilos globales */
+
 .carrito-producto-cantidad input[type="number"] {
     max-width: 3.25rem;
 }
 
 
-/* Ajuste de diseño del bloque de cantidad  */
+
 .carrito-producto {
     display: grid;
     grid-template-columns: 120px 1fr 150px 150px 150px 50px;
@@ -720,7 +720,7 @@ footer i {
     gap: 1rem;
 }
 
-/* Coloca "Cantidad" arriba y centrado */
+
 .carrito-producto-cantidad {
     display: flex;
     flex-direction: column;
@@ -729,7 +729,7 @@ footer i {
     gap: 0.3rem;
 }
 
-/* Texto Cantidad */
+
 .carrito-producto-cantidad small {
     font-size: .75rem;
 
@@ -737,7 +737,7 @@ footer i {
     margin-bottom: 0.2rem;
 }
 
-/* Controles en línea: [-][input][+] */
+
 .carrito-producto-cantidad .qty {
     display: flex;
     align-items: center;
@@ -745,7 +745,7 @@ footer i {
     gap: 0.4rem;
 }
 
-/* Input  compacto y centrado */
+
 .carrito-producto-cantidad .qty-input {
     width: 3rem;
     height: 1.8rem;
@@ -754,7 +754,7 @@ footer i {
     border-radius: .4rem;
 }
 
-/* Botones +/- */
+
 .carrito-producto-cantidad .qty-btn {
     width: 1.8rem;
     height: 1.8rem;
@@ -772,7 +772,7 @@ footer i {
     background: var(--clr-gray);
 }
 
-/* AlineaciOn horizontal consistente de columnas del carrito */
+
 .carrito-producto-precio,
 .carrito-producto-subtotal,
 .carrito-producto-cantidad {
@@ -784,12 +784,12 @@ footer i {
     align-items: center;
 }
 
-/* Forzar que Cantidad, Precio y Subtotal comiencen desde ARRIBA y se alineen iguales */
+
 .carrito-producto-precio,
 .carrito-producto-subtotal,
 .carrito-producto-cantidad {
     align-self: start;
-    /* arranca desde la parte superior de la fila */
+  
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -797,7 +797,7 @@ footer i {
     gap: .35rem;
 }
 
-/* Unificar separaciOn del label respecto al valor/control */
+
 .carrito-producto-precio small,
 .carrito-producto-subtotal small,
 .carrito-producto-cantidad small {
@@ -810,9 +810,9 @@ footer i {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* alinea el texto a la izquierda */
+  
     justify-content: flex-start;
-    /* arranca desde arriba */
+    
     gap: .35rem;
 }
 
@@ -844,7 +844,7 @@ footer i {
     line-height: 1;
 }
 
-/* ---- Barra de búsqueda y orden ---- */
+
 .header-lista{
   display:flex;
   align-items:center;
@@ -882,7 +882,7 @@ footer i {
   #ordenar{ width:100%; }
 }
 
-/* Buscador: lupa + submit-only + etiqueta de resultados */
+
 .busqueda-con-resultado{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
 .form-busqueda{ display:flex; align-items:center; background:#fff; border-radius:.75rem; border:1px solid var(--clr-gray); overflow:hidden; }
 .form-busqueda input{ border:none; outline:none; flex:1; padding:.6rem .9rem; min-width:240px; }
@@ -891,11 +891,11 @@ footer i {
 .resultado-busqueda{ font-size:.95rem; color:#555; white-space:nowrap; }
 .resultado-busqueda .q{ font-weight:600; color:#222; }
 
-/* Estado vacío de resultados */
+
 .empty-state{ grid-column: 1 / -1; margin-top: .5rem; width:100%; padding:2rem 1rem; text-align:left; padding-left:2rem; color:#666; background:#f7f7f7; border-radius:.75rem; font-size:1rem; }
 
 
-/* ---- Favoritos: corazón en tarjetas ---- */
+
 .producto-header-line{
     display:flex;
     align-items:flex-start;
@@ -913,7 +913,7 @@ footer i {
     justify-content:center;
 }
 
-/* ---- Favoritos: corazón en tarjetas (opción B) ---- */
+
 .producto-header-line{
     display: flex;
     align-items: flex-start;
@@ -933,7 +933,7 @@ footer i {
 
 .btn-favorito .bi-heart-fill{
     font-size: 1.2rem;
-    color: #ffffff;              /* corazón BLANCO cuando está apagado */
+    color: #ffffff;             
     transition: transform .2s ease, color .2s ease;
 }
 
@@ -942,6 +942,6 @@ footer i {
 }
 
 .btn-favorito.fav-active .bi-heart-fill{
-    color: #ff3b3b;              /* corazón completamente ROJO al activar */
+    color: #ff3b3b;              
 }
 

@@ -1,18 +1,19 @@
+const MENU_API_URL = "http://localhost:3008";
 let productos = [];
-fetch("../js/productos.json")
+fetch(MENU_API_URL + "/productos")
   .then(response => response.json())
   .then(data => {
-    productos = data;
+    productos = Array.isArray(data) ? data : [];
     aplicarFiltrosYOrden();
   })
   .catch(error => {
-    console.error("Error al cargar los productos:", error);
+    console.error("Error al cargar los productos desde la API:", error);
   });
 
 
 
 
-// ---- Favoritos por usuario (usa AppDB de pago-db.js) ----
+
 let favoritosActuales = [];
 
 function obtenerEmailUsuarioActual() {
@@ -74,10 +75,10 @@ function toggleFavorito(productoId) {
   const estabaEnFav = esFavorito(productoId);
 
   if (estabaEnFav) {
-    // Quitar de favoritos
+    
     favoritosActuales = favoritosActuales.filter(f => f.id !== productoId);
   } else {
-    // Agregar a favoritos
+    
     const fav = mapProductoAFavorito(prod);
     if (fav) favoritosActuales.push(fav);
   }
@@ -85,7 +86,7 @@ function toggleFavorito(productoId) {
   window.AppDB.updateFavorites(email, favoritosActuales);
   actualizarHeartsUI();
 
-  // Toastify según acción
+ 
   if (typeof Toastify !== "undefined") {
     Toastify({
       text: estabaEnFav
@@ -130,11 +131,11 @@ function actualizarHeartsUI() {
   });
 }
 
-// cargar favoritos al inicio (si hay usuario logueado)
+
 cargarFavoritosUsuario();
 
 
-// SELECTORES CONSTANTES
+
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const tituloPrincipal = document.querySelector("#titulo-principal") || { textContent: "" };
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
@@ -147,7 +148,7 @@ const resultadoBox = document.querySelector("#resultado-busqueda");
 const resultadoText = document.querySelector("#resultado-busqueda .q");
 let ultimaBusqueda = "";
 
-// Buscar, filtrar y ordenar
+
 const buscadorInput = document.querySelector("#buscador");
 const ordenarSelect = document.querySelector("#ordenar");
 
@@ -191,12 +192,12 @@ ordenarSelect && ordenarSelect.addEventListener("change", () => {
 });
 
 
-//  Formateador de moneda ARS 
+
 function formatARS(value) {
   try {
     return new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 }).format(Number(value) || 0);
   } catch (e) {
-    // Fallback manual por si Intl no estA disponible
+  
     const n = Math.round(Number(value) || 0).toString();
     return n.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   }
@@ -204,14 +205,14 @@ function formatARS(value) {
 
 
 
-// CARRITO 
+
 let productosEnCarrito;
 try {
   productosEnCarrito = JSON.parse(localStorage.getItem("productos-en-carrito")) || [];
   if (!Array.isArray(productosEnCarrito)) productosEnCarrito = [];
 } catch { productosEnCarrito = []; }
 
-//RENDER 
+
 function tarjetaProductoHTML(producto) {
   const favClass = esFavorito(producto.id) ? " fav-active" : "";
   return `
@@ -258,7 +259,7 @@ function cargarProductos(productosElegidos) {
   actualizarHeartsUI();
 }
 
-// QTY CONTROLS 
+
 function attachQtyListenersProducts() {
   document.querySelectorAll(".qty-control").forEach(ctrl => {
     const id = ctrl.getAttribute("data-id");
@@ -271,7 +272,7 @@ function attachQtyListenersProducts() {
   });
 }
 
-//AGREGAR AL CARRITO 
+
 let botonesAgregar = [];
 function actualizarBotonesAgregar() {
   botonesAgregar = document.querySelectorAll(".producto-agregar");
@@ -280,14 +281,14 @@ function actualizarBotonesAgregar() {
 
 function agregarAlCarrito(e) {
 
-  //Libreria
+
   Toastify({
     text: "Producto agregado",
     duration: 3000,
     close: true,
-    gravity: "top", // `top` or `bottom`
-    position: "right", // `left`, `center` or `right`
-    stopOnFocus: true, // Prevents dismissing of toast on hover
+    gravity: "top", 
+    position: "right", 
+    stopOnFocus: true, 
     style: {
       background: "linear-gradient(to right, #dfb950ff, #c0ad57ff)",
       borderRadius: "2rem",
@@ -295,12 +296,12 @@ function agregarAlCarrito(e) {
       fontZize: ".75rem"
     },
     offset: {
-      x: "3rem", // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-      y: "2rem" // vertical axis - can be a number or a string indicating unity. eg: '2em'
+      x: "3rem", 
+      y: "2rem"
     },
 
 
-    onClick: function () { } // Callback after click
+    onClick: function () { } 
   }).showToast();
 
 
@@ -342,7 +343,7 @@ botonesCategorias.forEach(boton => {
   });
 });
 
-// NUM PRODUCTOS EN CARRITO
+
 function actualizarNumerito() {
   if (!numerito) return;
   numerito.textContent = productosEnCarrito.reduce((acc, p) => acc + (p.cantidad || 0), 0);
@@ -352,12 +353,12 @@ function actualizarNumerito() {
 aplicarFiltrosYOrden();
 actualizarNumerito();
 
-// Buscar SOLO al enviar (Enter o click en la lupa)
+
 formBusqueda && formBusqueda.addEventListener("submit", (e) => {
   e.preventDefault();
   const term = (buscadorInput?.value || "").trim();
   ultimaBusqueda = term;
-  activarCategoriaTodos(); // activar "Todos"
+  activarCategoriaTodos(); 
   if (resultadoBox && resultadoText) {
     if (term) { resultadoText.textContent = `'${term}'`; resultadoBox.hidden = false; }
     else { resultadoText.textContent = ""; resultadoBox.hidden = true; }
@@ -369,7 +370,7 @@ btnBuscar && btnBuscar.addEventListener("click", (e) => {
   e.preventDefault();
   const term = (buscadorInput?.value || "").trim();
   ultimaBusqueda = term;
-  activarCategoriaTodos(); // activar "Todos"
+  activarCategoriaTodos(); 
   if (resultadoBox && resultadoText) {
     if (term) { resultadoText.textContent = `'${term}'`; resultadoBox.hidden = false; }
     else { resultadoText.textContent = ""; resultadoBox.hidden = true; }

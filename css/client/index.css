@@ -1,4 +1,4 @@
-/**** estilos para el index ****/
+
 
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato&display=swap');
 
@@ -536,7 +536,7 @@ footer i {
 
 
 
-/* cambiamos el tamaño del logo o modificamos */
+
 
 .logo-img {
   height: 150px;
@@ -544,7 +544,7 @@ footer i {
   vertical-align: middle;
 }
 
-/* ---- Badge de carrito en nav (home) ---- */
+
 .menu__item--carrito{
   display: inline-flex;
   align-items: center;
@@ -570,9 +570,7 @@ footer i {
   top: -2px;
 }
 
-/* ---- Animaciones generales en home ---- */
 
-/* Nav hover underline + leve movimiento */
 .menu__item{
   position: relative;
   cursor: pointer;
@@ -600,7 +598,7 @@ footer i {
   transform: scaleX(1);
 }
 
-/* Hero: entrada suave al cargar */
+
 .hero__text,
 .hero__img{
   opacity: 0;
@@ -618,7 +616,7 @@ body.home-loaded .hero__img{
   transition-delay: .08s;
 }
 
-/* Cards de ENJOY con efecto hover */
+
 .card{
   transition: transform .2s ease-out, box-shadow .2s ease-out;
 }

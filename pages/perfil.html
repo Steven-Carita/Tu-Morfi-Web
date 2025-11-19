@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi perfil - Tu Morfi Web</title>
+  <link rel="icon" href="../img/favicon.png" type="image/png">
   <link rel="stylesheet" href="../css/client/perfil.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
+
 <body>
   <main class="perfil-wrapper">
     <header class="perfil-header">
-      <a class="logo-web" href="../pages/home.html">
+      <a class="logo-web" href="../index.html">
         <h4 class="logo">
           <img src="../img/logo.png" alt="Logo Tu Morfi Web" class="logo-img" />
           Tu Morfi Web
@@ -19,10 +22,18 @@
       </a>
       <nav class="perfil-nav">
         <ul class="menu">
-          <a href="../pages/home.html"><li class="menu__item">Inicio</li></a>
-          <a href="../pages/menu.html"><li class="menu__item">Menu</li></a>
-          <a href="../pages/carrito.html"><li class="menu__item">Carrito</li></a>
-          <a href="../pages/perfil.html"><li class="menu__item menu__item--active">Mi Perfil</li></a>
+          <a href="../index.html">
+            <li class="menu__item">Inicio</li>
+          </a>
+          <a href="../pages/menu.html">
+            <li class="menu__item">Menu</li>
+          </a>
+          <a href="../pages/carrito.html">
+            <li class="menu__item">Carrito</li>
+          </a>
+          <a href="../pages/perfil.html">
+            <li class="menu__item">Mi Perfil</li>
+          </a>
         </ul>
       </nav>
     </header>
@@ -40,26 +51,23 @@
         </div>
 
         <ul class="perfil-menu-sec">
-          <li class="perfil-menu-item perfil-menu-item--active">
+          <li class="perfil-menu-item perfil-menu-item--active" data-view="resumen">
             <i class="bi bi-grid"></i> Resumen
           </li>
-          <li class="perfil-menu-item">
+          <li class="perfil-menu-item" data-view="compras">
             <i class="bi bi-bag-check"></i> Mis compras
           </li>
-          <li class="perfil-menu-item">
+          <li class="perfil-menu-item" data-view="favoritos">
             <i class="bi bi-heart"></i> Favoritos
           </li>
-          <li class="perfil-menu-item">
-            <i class="bi bi-geo-alt"></i> Direcciones
-          </li>
-          <li class="perfil-menu-item">
-            <i class="bi bi-person-gear"></i> Configuración
+          <li class="perfil-menu-item perfil-menu-item--logout" id="perfil-logout">
+            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
           </li>
         </ul>
       </aside>
 
       <section class="perfil-content">
-        <section class="perfil-section">
+        <section class="perfil-section" id="perfil-section-resumen">
           <h3>Resumen de tu cuenta</h3>
           <div class="perfil-grid-resumen">
             <article class="perfil-card kpi">
@@ -80,7 +88,7 @@
           </div>
         </section>
 
-        <section class="perfil-section">
+        <section class="perfil-section" id="perfil-section-datos">
           <div class="perfil-section-header">
             <h3>Mis datos</h3>
             <button type="button" class="btn-link" id="btn-editar-datos">
@@ -94,12 +102,13 @@
             </div>
             <div class="perfil-datos-col">
               <p><span class="label">Teléfono</span><span id="dato-telefono">+54 11 0000 0000</span></p>
-              <p><span class="label">Dirección principal</span><span id="dato-direccion">Sin dirección guardada</span></p>
+              <p><span class="label">Dirección principal</span><span id="dato-direccion">Sin dirección guardada</span>
+              </p>
             </div>
           </div>
         </section>
 
-        <section class="perfil-section">
+        <section class="perfil-section" id="perfil-section-compras">
           <div class="perfil-section-header">
             <h3>Mis últimas compras</h3>
           </div>
@@ -110,7 +119,7 @@
           </div>
         </section>
 
-        <section class="perfil-section">
+        <section class="perfil-section" id="perfil-section-favoritos">
           <div class="perfil-section-header">
             <h3>Favoritos</h3>
           </div>
@@ -123,8 +132,36 @@
       </section>
     </section>
   </main>
-
+  <footer>
+    <div class="footer">
+      <div class="footer__top">
+        <div>
+          <h2><img src="../img/logo.png" alt="Logo Tu Morfi Web" class="logo-img"> TU MORFI WEB</h2>
+          <p>Nos apasiona cocinar, innovar y brindarte los mejores sabores. Tu Morfi Web nació para acercarte
+            comida rica, fresca y preparada con dedicación. Seguimos creciendo para ofrecerte más variedad,
+            mejores servicios y una experiencia cada vez más completa. Gracias por acompañarnos.</p>
+        </div>
+        <div class="address">
+          <p>
+            <i class="bi bi-geo-alt-fill"></i> AV DIRECTORIO 1587, CABA, ARGENTINA<br>
+            <i class="bi bi-envelope-fill"></i> INFO@TUMORFIWEB.COM
+          </p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <a href="" class="fantasticos-footer">FANTASTICOS</a> 2025. ALL RIGHTS RESERVED.</p>
+        <div class="icons">
+          <a href=""><i class="bi bi-instagram"></i></a>
+          <a href=""><i class="bi bi-facebook"></i></a>
+          <a href=""><i class="bi bi-twitter"></i></a>
+          <a href=""><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/pago-db.js"></script>
   <script src="../js/perfil.js"></script>
 </body>
+
 </html>

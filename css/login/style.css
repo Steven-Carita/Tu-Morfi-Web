@@ -27,7 +27,7 @@ body {
 .logo_login{
     width: 150px;
     margin-bottom: -50px;
-    margin-top: -90px;
+    margin-top: -30px;
 }
 
 
@@ -73,6 +73,30 @@ body {
   border: none;
   color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+
+.info-childs .btn-admin-login{
+  display:inline-block;
+  margin-top:20px;
+  padding:10px 24px;
+  border-radius:999px;
+  border:2px solid rgba(255,255,255,0.6);
+  background:rgba(0,0,0,0.35);
+  color:#f9fafb;
+  font-size:0.9rem;
+  font-weight:300;
+  letter-spacing:.02em;
+  cursor:pointer;
+  backdrop-filter:blur(4px);
+  transition:background-color .3s ease, transform .15s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.info-childs .btn-admin-login:hover{
+  background:#b9a701;
+  border-color:#b9a701;
+  color:#ffffff;
+  box-shadow:0 10px 25px rgba(0,0,0,0.35);
+  transform:translateY(-1px);
 }
 
 .form-information {
@@ -240,11 +264,11 @@ body {
 
 
 
-/* Enlace volver al inicio */
+
 .volver-inicio {
   position: fixed;
-  top: 16px;
-  left: 16px;
+  top: 78%;
+  left: 46%;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -252,6 +276,88 @@ body {
   border-radius: 9999px;
   border: 1px solid rgba(0,0,0,0.1);
   color: #333;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(1px);
 }
 
+
+
+
+.admin-swal-popup{
+  background: #000000f3;              
+  border-radius: 18px;
+  padding: 24px 26px 22px;
+  border: 0.1px solid rgb(0, 0, 0);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+}
+
+.admin-swal-title{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin-bottom: 18px;
+}
+
+.admin-swal-body .admin-swal-input{
+  background-color: transparent;
+  border-radius: 10px;
+  border: 2px solid #a8a8a8;
+  color: #ffffff;
+  height: 38px;           
+  font-size: 0.9rem;      
+  padding: 8px 60px 8px 10px;      
+  max-width: 260px;       
+  margin: 18px auto;         
+  display: block;
+}
+
+.admin-swal-body .admin-swal-input::placeholder{
+  color: #7a7a7a;
+}
+
+
+.admin-swal-confirm,
+.admin-swal-cancel{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  border-radius: 9999px;
+  padding: 9px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.admin-swal-confirm{
+  background: #7b3cff; 
+  color: #ffffff;
+  margin-right: 8px;
+}
+
+.admin-swal-confirm:hover{
+  background: #612fd6;
+}
+
+.admin-swal-cancel{
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.admin-swal-cancel:hover{
+  background: #e5e7eb;
+}
+
+
+
+.admin-swal-popup .swal2-success-ring {
+  border-color: #7b3cff40 !important; 
+}
+
+.admin-swal-popup .swal2-success-line-tip,
+.admin-swal-popup .swal2-success-line-long {
+  background-color: #7b3cff !important; 
+}
+
+.admin-swal-popup .swal2-success-circular-line-left,
+.admin-swal-popup .swal2-success-circular-line-right {
+  background: transparent !important;
+}

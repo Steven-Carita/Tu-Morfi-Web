@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Lato&display=swap');
 
 
-/* pago-end.css - estilo minimalista inspirado en checkout */
+
 :root{
   --bg:#f6f7fb;
   --panel:#ffffff;
@@ -169,7 +169,7 @@ header {
 
 
 .logo {
-  width: 10px;
+  width: 100px;
   margin-bottom: 8px;
 }
 
@@ -182,7 +182,7 @@ header {
 }
 
 
-/* === Estilos para logos de tarjetas === */
+
 .card-logos {
   display: flex;
   align-items: center;
@@ -195,7 +195,7 @@ header {
 }
 
 
-/* ARS badge consistent */
+
 .ars-badge{
   font-size: 0.8em;
   vertical-align: baseline;
@@ -205,13 +205,13 @@ header {
 }
 
 
-/* ARS badge blanca en botón azul */
+
 button .ars-badge {
   color: #fff;
 }
 
 
-/* Spinner de procesamiento en el botón de pagar */
+
 .paybtn.loading{
   position:relative;
   opacity:.9;
@@ -234,7 +234,7 @@ button .ars-badge {
 }
 
 
-/* --- Modal de código de promoción --- */
+
 .promo-modal-backdrop{
   position:fixed;
   inset:0;

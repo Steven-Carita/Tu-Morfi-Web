@@ -1,4 +1,4 @@
-// Registro: validaciones y helpers
+
 const formRegister = document.querySelector(".form-register");
 const inputUser = document.querySelector('.form-register [name="userName"]');
 const inputLastName = document.querySelector('.form-register [name="userLastName"]');
@@ -7,12 +7,12 @@ const inputEmail = document.querySelector('.form-register input[type="email"]');
 const alertaError = document.querySelector(".form-register .alerta-error");
 const alertaExito = document.querySelector(".form-register .alerta-exito");
 
-// Expresiones
+
 const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,40}$/;
 export const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 export const passwordRegex = /^.{4,12}$/;
 
-// Estado de campos (se comparte con el módulo de login)
+
 export const estadoValidacionCampos = {
   userName: false,
   userLastName: false,
@@ -21,7 +21,7 @@ export const estadoValidacionCampos = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Validación en tiempo real
+  
   inputUser.addEventListener("input", () => {
     validarCampo(nameRegex, inputUser, "Solo letras (sin números ni caracteres especiales). Mínimo 2 caracteres.");
   });
@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     validarCampo(passwordRegex, inputPass, "La contraseña tiene que ser de 4 a 12 dígitos");
   });
 
-  // Validación al enviar
   formRegister.addEventListener("submit", (e) => {
     e.preventDefault();
     validarCampo(nameRegex, inputUser, "Solo letras (sin números ni caracteres especiales). Mínimo 2 caracteres.");
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 export function validarCampo(regularExpresion, campo, mensaje) {
 
-  // Si está vacío, no se mostrara alerta (pero marcar como no válido)
+  
   if (campo.value.trim() === "") {
     eliminarAlerta(campo.parentElement.parentElement);
     estadoValidacionCampos[campo.name] = false;
@@ -82,7 +81,7 @@ function eliminarAlerta(referencia) {
 
 
 export function enviarFormulario(form, alertaError, alertaExito) {
-  // ¿Registro o Login?
+ 
   const isRegister = form.classList.contains("form-register");
 
   let valido = false;
@@ -93,12 +92,12 @@ export function enviarFormulario(form, alertaError, alertaExito) {
       estadoValidacionCampos.userEmail &&
       estadoValidacionCampos.userPassword;
   } else {
-    // Login: solo correo + contraseña
+    
     valido = estadoValidacionCampos.userEmail && estadoValidacionCampos.userPassword;
   }
 
   if (valido) {
-    // Construir payload de usuario / login
+   
     let email = "";
     let password = "";
     let nombre = "";
@@ -112,7 +111,7 @@ export function enviarFormulario(form, alertaError, alertaExito) {
       apellido = (data.get("userLastName") || "").toString().trim();
     }catch(e){}
 
-    // Integración con la "base de datos" de pago (pago-db.js)
+    
     if (window.AppDB) {
       if (isRegister) {
         window.AppDB.registerUser({
@@ -124,7 +123,7 @@ export function enviarFormulario(form, alertaError, alertaExito) {
       } else {
         const ok = window.AppDB.login(email, password);
         if (!ok) {
-          // Login inválido: mostrar error y salir
+          
           alertaExito.classList.remove("alertaExito");
           alertaError.classList.add("alertaError");
           setTimeout(() => {
@@ -135,7 +134,7 @@ export function enviarFormulario(form, alertaError, alertaExito) {
       }
     }
 
-    // Reset de estado y formulario
+    
     estadoValidacionCampos.userName = false;
     estadoValidacionCampos.userLastName = false;
     estadoValidacionCampos.userEmail = false;
@@ -145,11 +144,11 @@ export function enviarFormulario(form, alertaError, alertaExito) {
     alertaExito.classList.add("alertaExito");
     alertaError.classList.remove("alertaError");
 
-    // En caso de login exitoso, podemos redirigir al home o al perfil
+   
     if (!isRegister) {
       setTimeout(() => {
         try{
-          window.location.href = "../pages/home.html";
+          window.location.href = "../../index.html";
         }catch(e){}
       }, 800);
     }
@@ -160,7 +159,7 @@ export function enviarFormulario(form, alertaError, alertaExito) {
     return;
   }
 
-  // Mostrar error general
+
   alertaExito.classList.remove("alertaExito");
   alertaError.classList.add("alertaError");
   setTimeout(() => {

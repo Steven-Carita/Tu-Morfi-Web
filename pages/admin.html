@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de administración</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../img/favicon.png" type="image/png">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="../img/logo.png" alt="Logo" class="admin-logo">
+        <span>TU MORFI WEB</span>
+      </div>
+      <nav class="admin-nav">
+        <button class="nav-item active" data-panel="resumen"><i class='bx bx-grid-alt'></i><span>Resumen</span></button>
+        <button class="nav-item" data-panel="productos"><i class='bx bx-bowl-hot'></i><span>Productos</span></button>
+        <button class="nav-item" data-panel="categorias"><i class='bx bx-category'></i><span>Categorías</span></button>
+        <button class="nav-item" data-panel="pedidos"><i class='bx bx-receipt'></i><span>Pedidos</span></button>
+        <button class="nav-item" data-panel="usuarios"><i class='bx bx-user'></i><span>Usuarios</span></button>
+      </nav>
+      <div class="admin-footer">
+        <button id="btn-admin-logout" class="btn-outline">
+          <i class='bx bx-log-out'></i><span>Cerrar sesión</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Panel Administrador</h1>
+        <p>Herramientas de administración y control</p>
+        <p class="admin-clock">Hora actual: <span id="admin-clock"></span></p>
+      </header>
+
+      <section id="panel-resumen" class="admin-panel visible">
+        <div class="cards-grid">
+          <article class="card-kpi">
+            <h3>Total productos</h3>
+            <p id="kpi-productos">-</p>
+          </article>
+          <article class="card-kpi">
+            <h3>Total pedidos</h3>
+            <p id="kpi-pedidos">-</p>
+          </article>
+          <article class="card-kpi">
+            <h3>Usuarios registrados</h3>
+            <p id="kpi-usuarios">-</p>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="card-analytics">
+            <div class="card-analytics-header">
+              <h3>Productos más vendidos</h3>
+              <p class="card-analytics-subtitle">Top 3 por cantidad</p>
+            </div>
+            <ul id="top-productos" class="list-analytics"></ul>
+          </section>
+
+          <section class="card-analytics">
+            <div class="card-analytics-header">
+              <h3>Clientes con más pedidos</h3>
+              <p class="card-analytics-subtitle">Top 3 por cantidad de pedidos</p>
+            </div>
+            <ul id="top-usuarios" class="list-analytics"></ul>
+          </section>
+
+          <section class="card-analytics card-analytics-full">
+            <div class="card-analytics-header">
+              <h3>Pedidos por tipo de entrega</h3>
+              <p class="card-analytics-subtitle">Envío vs retiro en local</p>
+            </div>
+            <div id="chart-entrega" class="mini-bar-chart"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="panel-productos" class="admin-panel">
+        <div class="panel-header">
+          <h2>Productos</h2>
+          <div class="panel-actions">
+            <input type="text" id="busqueda-productos" placeholder="Buscar por nombre o ID">
+            <select id="filtro-categoria">
+              <option value="">Todas las categorías</option>
+            </select>
+          </div>
+        </div>
+        <div class="panel-body two-cols">
+          <form id="form-producto" class="card-form">
+            <h3>Crear / editar producto</h3>
+            <label>
+              ID
+              <input type="text" name="id" placeholder="pizza-09 (Ejemplo)">
+            </label>
+            <label>
+              Nombre
+              <input type="text" name="titulo" placeholder="Nombre del producto">
+            </label>
+            <label>
+              Precio (ARS)
+              <input type="number" name="precio" min="0" step="100">
+            </label>
+            <label>
+              Categoría
+              <select name="categoria" id="select-categoria-form">
+                <option value="">Elegí una categoría</option>
+              </select>
+            </label>
+            <label>
+              Imagen
+              <select name="imagen" id="select-imagen-form">
+                <option value="">Elegí una imagen</option>
+              </select>
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Guardar</button>
+              <button type="button" id="btn-limpiar-form" class="btn-ghost">Limpiar</button>
+            </div>
+          </form>
+
+          <div class="card-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Imagen</th>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Categoría</th>
+                  <th>Precio</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-productos">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-categorias" class="admin-panel">
+        <div class="panel-header">
+          <h2>Categorías</h2>
+        </div>
+        <div class="panel-body two-cols">
+          <form id="form-categoria" class="card-form">
+            <h3>Nueva categoría</h3>
+            <label>
+              ID
+              <input type="text" name="id" placeholder="pizzas">
+            </label>
+            <label>
+              Nombre
+              <input type="text" name="nombre" placeholder="Pizzas">
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Guardar</button>
+            </div>
+          </form>
+          <div class="card-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-categorias"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-pedidos" class="admin-panel">
+        <div class="panel-header">
+          <h2>Pedidos</h2>
+        </div>
+        <div class="panel-body">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Fecha / hora</th>
+                <th>Usuario</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Entrega</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-pedidos"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="panel-usuarios" class="admin-panel">
+        <div class="panel-header">
+          <h2>Usuarios</h2>
+        </div>
+        <div class="panel-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-usuarios"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

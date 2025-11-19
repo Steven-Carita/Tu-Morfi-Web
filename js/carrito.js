@@ -1,7 +1,7 @@
-// Cargar carrito desde localStorage
+
 let productosEnCarrito = JSON.parse(localStorage.getItem("productos-en-carrito")) || [];
 
-// Referencias del DOM
+
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
 const contenedorCarritoProductos = document.querySelector("#carrito-productos");
 const contenedorCarritoAcciones = document.querySelector("#carrito-acciones");
@@ -11,21 +11,21 @@ const botonVaciar = document.querySelector("#carrito-acciones-vaciar");
 const contenedorTotal = document.querySelector("#total");
 const botonComprar = document.querySelector("#carrito-acciones-comprar");
 
-// Formateador de moneda ARS (puntos para miles) 
+
 function formatARS(value) {
     try {
         return new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 }).format(Number(value) || 0);
     } catch (e) {
-        // Fallback manual por si Intl no está disponible
+       
         const n = Math.round(Number(value) || 0).toString();
         return n.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 }
 
-// Render inicial
+
 cargarProductosCarrito();
 
-// Dibuja los productos del carrito con controles de cantidad (+/-) e input numErico
+
 function cargarProductosCarrito() {
     if (productosEnCarrito && productosEnCarrito.length > 0) {
         contenedorCarritoVacio.classList.add("disabled");
@@ -78,7 +78,7 @@ function cargarProductosCarrito() {
     }
 }
 
-// DelegaciOn de eventos para +/-, input y eliminar
+
 contenedorCarritoProductos.addEventListener("click", (e) => {
     const row = e.target.closest(".carrito-producto");
     if (!row) return;
@@ -99,7 +99,7 @@ contenedorCarritoProductos.addEventListener("click", (e) => {
     }
 });
 
-// Cambio manual en el input de cantidad
+
 contenedorCarritoProductos.addEventListener("change", (e) => {
     if (e.target.classList.contains("qty-input")) {
         const row = e.target.closest(".carrito-producto");
@@ -110,7 +110,7 @@ contenedorCarritoProductos.addEventListener("change", (e) => {
     }
 });
 
-// Eliminar un producto
+
 function eliminarProducto(id) {
 
 
@@ -129,12 +129,12 @@ function eliminarProducto(id) {
             fontZize: ".75rem"
         },
         offset: {
-            x: "3rem", // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-            y: "1.5rem" // vertical axis - can be a number or a string indicating unity. eg: '2em'
+            x: "3rem", 
+            y: "1.5rem" 
         },
 
 
-        onClick: function () { } // Callback after click
+        onClick: function () { } 
     }).showToast();
 
 
@@ -147,7 +147,7 @@ function eliminarProducto(id) {
     cargarProductosCarrito();
 }
 
-// Vaciar
+
 botonVaciar?.addEventListener("click", () => {
 
     Swal.fire({
@@ -191,22 +191,22 @@ botonVaciar?.addEventListener("click", () => {
 
 });
 
-// Comprar
+
 botonComprar?.addEventListener("click", comprarCarrito);
 
 function comprarCarrito(){
-    // No vaciamos el carrito: vamos a Datos de compra con los productos.
+    
     try { sessionStorage.setItem("checkout-origin","carrito"); } catch(e){}
     location.href = "datos-compra.html";
 }
 
-// Actualiza cantidad, subtotales y total
+
 function actualizarCantidad(id, nuevaCantidad) {
     const item = productosEnCarrito.find(p => String(p.id) === String(id));
     if (!item) return;
     item.cantidad = nuevaCantidad;
 
-    // Actualizar subtotal de la fila sin re-render completo
+   
     const row = contenedorCarritoProductos.querySelector(`.carrito-producto[data-id="${CSS.escape(String(id))}"]`);
     if (row) {
         const subtotalEl = row.querySelector(".subtotal");
@@ -217,18 +217,18 @@ function actualizarCantidad(id, nuevaCantidad) {
     actualizarTotal();
 }
 
-// Total general
+
 function actualizarTotal() {
     const totalCalculado = productosEnCarrito.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
     if (contenedorTotal) contenedorTotal.innerText = `$${formatARS(totalCalculado)}`;
 }
 
-// Guardar en storage
+
 function persistir() {
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 }
 
-// Forzar navegación al checkout aunque haya preventDefault en otro lado
+
 (function(){
   const link = document.querySelector("#btn-continuar-compra")
             || document.querySelector(".comprar-ahora")
